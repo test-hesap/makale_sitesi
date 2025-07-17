@@ -10,6 +10,7 @@ if (!isLoggedIn()) {
 
 $messageId = intval($_GET['id'] ?? 0);
 $currentUser = getCurrentUser();
+$language = getCurrentLanguage();
 
 try {
     $database = new Database();
@@ -54,7 +55,7 @@ try {
                 <?= htmlspecialchars($message['subject']) ?>
             </h1>
             <a href="/mesajlar" class="inline-flex items-center text-gray-600 hover:text-gray-900">
-                <i class="fas fa-arrow-left mr-2"></i> Mesajlara Dön
+                <i class="fas fa-arrow-left mr-2"></i> <?= $language == 'en' ? 'Back to Messages' : 'Mesajlara Dön' ?>
             </a>
         </div>
 
@@ -89,7 +90,7 @@ try {
                         </div>
                         <?php if ($message['is_read']): ?>
                         <span class="text-sm text-green-600 dark:text-green-400">
-                            <i class="fas fa-check-double mr-1"></i> Okundu
+                            <i class="fas fa-check-double mr-1"></i> <?= $language == 'en' ? 'Read' : 'Okundu' ?>
                         </span>
                         <?php endif; ?>
                     </div>
@@ -103,14 +104,14 @@ try {
         <!-- Yanıt Formu -->
         <?php if ($message['receiver_id'] == $currentUser['id']): ?>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-            <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Yanıtla</h2>
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4"><?= $language == 'en' ? 'Reply' : 'Yanıtla' ?></h2>
             <form action="/api/send-message.php" method="POST" class="space-y-4">
                 <input type="hidden" name="recipient" value="<?= htmlspecialchars($message['sender_username']) ?>">
                 <input type="hidden" name="replyToId" value="<?= $message['id'] ?>">
                 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Konu
+                        <?= $language == 'en' ? 'Subject' : 'Konu' ?>
                     </label>
                     <input type="text" name="subject" 
                            value="RE: <?= htmlspecialchars(preg_replace('/^RE:\s*/', '', $message['subject'])) ?>"
@@ -120,7 +121,7 @@ try {
                 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Mesaj
+                        <?= $language == 'en' ? 'Message' : 'Mesaj' ?>
                     </label>
                     <textarea name="content" rows="4" 
                               class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
@@ -129,7 +130,7 @@ try {
                 
                 <div class="flex justify-end">
                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-                        <i class="fas fa-paper-plane mr-2"></i> Yanıt Gönder
+                        <i class="fas fa-paper-plane mr-2"></i> <?= $language == 'en' ? 'Send Reply' : 'Yanıt Gönder' ?>
                     </button>
                 </div>
             </form>
@@ -139,7 +140,7 @@ try {
         <div class="mt-6 flex justify-end space-x-3">
             <button onclick="hideMessageDetail()" 
                     class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded">
-                Kapat
+                <?= $language == 'en' ? 'Close' : 'Kapat' ?>
             </button>
         </div>
     </div>

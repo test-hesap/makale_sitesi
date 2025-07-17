@@ -243,13 +243,25 @@ try {
                         <?php endif; ?>
                             </h1>
                         </div>
-                        <?php if (isLoggedIn() && getCurrentUser()['id'] != $user['id']): ?>
+                        <?php if (isLoggedIn() && getCurrentUser()['id'] != $user['id']): 
+                            $currentUser = getCurrentUser();
+                            $isApproved = $currentUser['is_approved'];
+                        ?>
                         <div class="mt-4 md:mt-0">
+                            <?php if ($isApproved): ?>
                             <button onclick="showMessageModal('<?= htmlspecialchars($user['username']) ?>')" 
                                     class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
                                 <i class="far fa-envelope mr-2"></i>
                                 <?= $language == 'en' ? 'Send Message' : 'Mesaj Gönder' ?>
                             </button>
+                            <?php else: ?>
+                            <button disabled 
+                                    class="inline-flex items-center px-4 py-2 bg-gray-400 cursor-not-allowed text-white rounded-lg" 
+                                    title="<?= $language == 'en' ? 'Your account needs to be approved to send messages' : 'Mesaj gönderebilmek için hesabınızın onaylanması gerekiyor' ?>">
+                                <i class="far fa-envelope mr-2"></i>
+                                <?= $language == 'en' ? 'Send Message' : 'Mesaj Gönder' ?>
+                            </button>
+                            <?php endif; ?>
                         </div>
                         <?php endif; ?>
                     </div>
@@ -398,6 +410,11 @@ try {
 
         function sendMessage(event) {
             event.preventDefault();
+            
+            <?php if (!$currentUser['is_approved']): ?>
+            alert('<?= $language == 'en' ? 'Your account needs to be approved before you can send messages.' : 'Mesaj gönderebilmek için hesabınızın onaylanması gerekiyor.' ?>');
+            return;
+            <?php endif; ?>
             
             const form = event.target;
             const formData = new FormData(form);

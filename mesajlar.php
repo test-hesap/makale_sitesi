@@ -7,8 +7,9 @@ if (!isLoggedIn()) {
     exit;
 }
 
-$pageTitle = 'Mesajlarım - ' . getSiteSetting('site_title');
-$metaDescription = 'Özel mesajlarınız ve yazışmalarınız.';
+$language = getCurrentLanguage();
+$pageTitle = t('messages') . ' - ' . getSiteSetting('site_title');
+$metaDescription = $language == 'en' ? 'Your private messages and conversations.' : 'Özel mesajlarınız ve yazışmalarınız.';
 
 $currentUser = getCurrentUser();
 $userId = $currentUser['id'];
@@ -71,10 +72,10 @@ try {
         <!-- Başlık -->
         <div class="mb-8">
             <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                Mesajlarım
+                <?= t('messages') ?>
             </h1>
             <p class="text-gray-600 dark:text-gray-400">
-                Özel mesajlarınız ve yazışmalarınız
+                <?= $language == 'en' ? 'Your private messages and conversations.' : 'Özel mesajlarınız ve yazışmalarınız' ?>
             </p>
         </div>
 
@@ -87,10 +88,10 @@ try {
         <!-- Mesaj Kutusu Seçimi -->
         <div class="flex mb-6 border-b">
             <a href="?box=gelen" class="px-4 py-2 <?= $messageBox == 'gelen' ? 'border-b-2 border-blue-500 text-blue-600' : 'text-gray-600' ?> font-medium">
-                Gelen Kutusu <?= $unreadCount > 0 ? "<span class='bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-1'>$unreadCount</span>" : '' ?>
+                <?= $language == 'en' ? 'Inbox' : 'Gelen Kutusu' ?> <?= $unreadCount > 0 ? "<span class='bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-1'>$unreadCount</span>" : '' ?>
             </a>
             <a href="?box=gonderilen" class="px-4 py-2 <?= $messageBox == 'gonderilen' ? 'border-b-2 border-blue-500 text-blue-600' : 'text-gray-600' ?> font-medium">
-                Gönderilen Mesajlar
+                <?= $language == 'en' ? 'Sent Messages' : 'Gönderilen Mesajlar' ?>
             </a>
         </div>
 
@@ -100,9 +101,11 @@ try {
             <div class="text-gray-400 mb-4">
                 <i class="far fa-envelope text-6xl"></i>
             </div>
-            <h3 class="text-xl font-medium text-gray-600 mb-2">Mesaj Bulunamadı</h3>
+            <h3 class="text-xl font-medium text-gray-600 mb-2"><?= $language == 'en' ? 'No Messages Found' : 'Mesaj Bulunamadı' ?></h3>
             <p class="text-gray-500">
-                <?= $messageBox == 'gelen' ? 'Henüz hiç mesajınız bulunmuyor.' : 'Henüz hiç mesaj göndermediniz.' ?>
+                <?= $messageBox == 'gelen' 
+                    ? ($language == 'en' ? 'You have no messages yet.' : 'Henüz hiç mesajınız bulunmuyor.') 
+                    : ($language == 'en' ? 'You haven\'t sent any messages yet.' : 'Henüz hiç mesaj göndermediniz.') ?>
             </p>
         </div>
         <?php else: ?>
@@ -166,7 +169,7 @@ try {
         <div class="mt-6 flex justify-end space-x-3">
             <button onclick="hideMessageDetail()" 
                     class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded">
-                Kapat
+                <?= $language == 'en' ? 'Close' : 'Kapat' ?>
             </button>
         </div>
     </div>
@@ -178,14 +181,18 @@ function showMessageDetail(messageId) {
 }
 
 function deleteMessage(messageId) {
-    if (confirm('Bu mesajı silmek istediğinizden emin misiniz?')) {
+    const currentLanguage = '<?= $language ?>';
+    const confirmText = currentLanguage === 'en' ? 'Are you sure you want to delete this message?' : 'Bu mesajı silmek istediğinizden emin misiniz?';
+    const errorText = currentLanguage === 'en' ? 'Message could not be deleted: ' : 'Mesaj silinemedi: ';
+    
+    if (confirm(confirmText)) {
         fetch(`/api/delete-message.php?id=${messageId}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     window.location.reload();
                 } else {
-                    alert('Mesaj silinemedi: ' + data.error);
+                    alert(errorText + data.error);
                 }
             });
     }

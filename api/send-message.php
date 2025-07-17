@@ -47,6 +47,17 @@ if (empty($recipient) || empty($subject) || empty($content)) {
 $currentUser = getCurrentUser();
 $senderId = $currentUser['id'];
 
+// Kullanıcının onaylanmış olup olmadığını kontrol et
+if (!$currentUser['is_approved']) {
+    $language = getCurrentLanguage();
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => false,
+        'error' => $language == 'en' ? 'You cannot send messages until your account is approved.' : 'Hesabınız onaylanana kadar mesaj gönderemezsiniz.'
+    ]);
+    exit;
+}
+
 try {
     $database = new Database();
     $db = $database->pdo;
@@ -115,25 +126,26 @@ try {
     if ($result) {
         // HTML başlıkları
         require_once '../includes/header.php';
+        $language = getCurrentLanguage();
         ?>
         <div class="container mx-auto px-4 py-8">
             <div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    Mesaj Gönder: <?= htmlspecialchars($receiverUser['username']) ?>
+                    <?= $language == 'en' ? 'Message Sent: ' : 'Mesaj Gönder: ' ?><?= htmlspecialchars($receiverUser['username']) ?>
                 </h1>
                 
                 <div class="bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700 rounded-lg p-4 mb-6">
                     <p class="text-green-700 dark:text-green-200">
-                        Mesajınız başarıyla gönderildi.
+                        <?= $language == 'en' ? 'Your message has been sent successfully.' : 'Mesajınız başarıyla gönderildi.' ?>
                     </p>
                 </div>
                 
                 <div class="flex gap-4">
                     <a href="/mesajlar" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-                        Mesajlarım sayfasına git
+                        <?= $language == 'en' ? 'Go to my messages' : 'Mesajlarım sayfasına git' ?>
                     </a>
                     <a href="/uye/<?= htmlspecialchars($receiverUser['username']) ?>" class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors">
-                        <?= htmlspecialchars($receiverUser['username']) ?> profiline dön
+                        <?= $language == 'en' ? 'Return to ' . htmlspecialchars($receiverUser['username']) . '\'s profile' : htmlspecialchars($receiverUser['username']) . ' profiline dön' ?>
                     </a>
                 </div>
             </div>

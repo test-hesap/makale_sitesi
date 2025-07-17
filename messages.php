@@ -79,10 +79,23 @@ try {
 
         <!-- Yeni Mesaj Butonu -->
         <div class="mb-6">
+            <?php if ($currentUser['is_approved']): ?>
             <button onclick="showNewMessageModal()" 
                     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors">
                 <i class="fas fa-paper-plane mr-2"></i>Yeni Mesaj
             </button>
+            <?php else: ?>
+            <div class="flex items-center mb-4">
+                <button disabled 
+                        class="bg-gray-400 cursor-not-allowed text-white px-6 py-3 rounded-lg mr-3">
+                    <i class="fas fa-paper-plane mr-2"></i>Yeni Mesaj
+                </button>
+                <span class="text-sm text-yellow-600 dark:text-yellow-400">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                    <?= $language == 'en' ? 'Your account needs to be approved to send messages' : 'Mesaj gönderebilmek için hesabınızın onaylanması gerekiyor' ?>
+                </span>
+            </div>
+            <?php endif; ?>
         </div>
 
         <!-- Mesaj Listesi -->
@@ -255,6 +268,11 @@ try {
 <script>
 // Modal işlemleri
 function showNewMessageModal() {
+    <?php if (!$currentUser['is_approved']): ?>
+    alert('<?= $language == 'en' ? 'Your account needs to be approved before you can send messages.' : 'Mesaj gönderebilmek için hesabınızın onaylanması gerekiyor.' ?>');
+    return;
+    <?php endif; ?>
+    
     document.getElementById('newMessageModal').classList.remove('hidden');
     document.getElementById('newMessageModal').classList.add('flex');
 }
