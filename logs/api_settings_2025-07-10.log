@@ -1,0 +1,168 @@
+[2025-07-10 23:35:45] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:35:45] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:35:45] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:35:45] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:35:45] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:35:45] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:35:45] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:35:45] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:35:45] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:35:45] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:35:45] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:35:45] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:36:13] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:36:13] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:36:13] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:36:13] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:36:13] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:36:13] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:36:13] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:36:13] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:36:13] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:36:13] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:36:13] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:36:13] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:36:38] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:36:38] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:36:38] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:36:38] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:36:38] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:36:38] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:36:38] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:36:38] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:36:38] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:36:38] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:36:38] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:36:38] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:14] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:14] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:14] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:14] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:14] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:14] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:14] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:14] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:14] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:14] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:14] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:14] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:18] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:18] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:18] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:18] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:18] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:18] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:18] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:18] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:18] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:18] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:18] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:18] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:20] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:20] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:20] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:20] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:20] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:20] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:20] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:20] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:20] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:20] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:20] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:20] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:26] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:26] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:26] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:26] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:26] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:26] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:26] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:26] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:26] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:26] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:26] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:26] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:35] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:35] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:35] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:35] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:35] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:35] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:35] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:35] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:35] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:35] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:35] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:35] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:37] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:37] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:37] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:37] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:37] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:37] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:37] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:37] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:37] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:37] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:37] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:37] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:40] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:40] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:40] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:40] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:40] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:40] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:40] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:40] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:40] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:40] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:40] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:40] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:44] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:44] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:44] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:44] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:44] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:44] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:44] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:44] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:44] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:44] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:44] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:44] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:55] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:55] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:55] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:55] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:55] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:55] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:55] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:55] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:55] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:55] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:55] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:55] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:37:57] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:37:57] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:37:57] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:37:57] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:37:57] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:37:57] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:37:57] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:37:57] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:37:57] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:37:57] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:37:57] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:37:57] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}
+[2025-07-10 23:38:12] İstenen ayarlar: cookie_consent_enabled, cookie_consent_text, cookie_consent_button_text, cookie_consent_position, cookie_consent_theme, cookie_consent_show_link, cookie_consent_link_text, cookie_analytics_enabled, cookie_marketing_enabled
+[2025-07-10 23:38:12] Belirli ayarlar istendi. SQL sorgusu: SELECT setting_key, setting_value FROM settings WHERE setting_key IN (?,?,?,?,?,?,?,?,?)
+[2025-07-10 23:38:12] Ayar bulundu: cookie_consent_enabled = 1
+[2025-07-10 23:38:12] Ayar bulundu: cookie_consent_text = Bu web sitesi, size en iyi deneyimi sunmak için çerezler kullanır.
+[2025-07-10 23:38:12] Ayar bulundu: cookie_consent_button_text = Kabul Et
+[2025-07-10 23:38:12] Ayar bulundu: cookie_consent_position = bottom-left
+[2025-07-10 23:38:12] Ayar bulundu: cookie_consent_theme = light
+[2025-07-10 23:38:12] Ayar bulundu: cookie_consent_show_link = 1
+[2025-07-10 23:38:12] Ayar bulundu: cookie_consent_link_text = Daha fazla bilgi
+[2025-07-10 23:38:12] Ayar bulundu: cookie_analytics_enabled = 1
+[2025-07-10 23:38:12] Ayar bulundu: cookie_marketing_enabled = 1
+[2025-07-10 23:38:12] Döndürülen sonuç: {"cookie_consent_enabled":"1","cookie_consent_text":"Bu web sitesi, size en iyi deneyimi sunmak i\u00e7in \u00e7erezler kullan\u0131r.","cookie_consent_button_text":"Kabul Et","cookie_consent_position":"bottom-left","cookie_consent_theme":"light","cookie_consent_show_link":"1","cookie_consent_link_text":"Daha fazla bilgi","cookie_analytics_enabled":"1","cookie_marketing_enabled":"1"}

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /config/
+Disallow: /includes/
+Disallow: /vendor/
+Disallow: /logs/
+Disallow: /cache/
+Disallow: /database/
+
+Sitemap: http://localhost/sitemap.xml

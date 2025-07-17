@@ -1,0 +1,2 @@
+[2025-07-17 09:49:46] Bakım modu cron job başlatıldı
+[2025-07-17 09:49:46] Bakım modu cron job hatası: Veritabanı bağlantı hatası: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
