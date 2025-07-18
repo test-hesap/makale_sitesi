@@ -78,13 +78,16 @@ updateOnlineUsers();
     <!-- Favicon -->
     <?php 
     $favicon = getSiteSetting('site_favicon');
-    if ($favicon && file_exists(__DIR__ . '/../' . $favicon)): 
+    // Önbellek kırıcı olarak timestamp parametresi ekle
+    $cache_param = '?v=' . time();
+    
+    if (!empty($favicon)): 
     ?>
-    <link rel="icon" type="image/x-icon" href="/<?= $favicon ?>">
-    <link rel="shortcut icon" href="/<?= $favicon ?>">
-    <link rel="apple-touch-icon" href="/<?= $favicon ?>">
+    <link rel="icon" type="image/x-icon" href="/<?= ltrim($favicon, '/') . $cache_param ?>">
+    <link rel="shortcut icon" href="/<?= ltrim($favicon, '/') . $cache_param ?>">
+    <link rel="apple-touch-icon" href="/<?= ltrim($favicon, '/') . $cache_param ?>">
     <?php else: ?>
-    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.png<?= $cache_param ?>">
     <?php endif; ?>
     
     <!-- Dil Değiştirme Script -->

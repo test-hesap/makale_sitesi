@@ -8,6 +8,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $site_description = $_POST['site_description'] ?? '';
         $site_logo = $_POST['site_logo'] ?? '';
         
+        // Favicon kaldırma işlemi
+        if (isset($_POST['remove_favicon']) && $_POST['remove_favicon'] == 1) {
+            // Favicon ayarını veritabanından kaldır
+            updateSetting('site_favicon', '');
+            
+            // Mevcut favicon dosyasını silmek için yolu al
+            $current_favicon = getSiteSetting('site_favicon');
+            if (!empty($current_favicon) && file_exists('../' . $current_favicon)) {
+                @unlink('../' . $current_favicon);
+            }
+        }
+        
         // Favicon upload işlemi
         if (isset($_FILES['favicon']) && $_FILES['favicon']['error'] === UPLOAD_ERR_OK) {
             $upload_dir = '../assets/images/favicon/';
@@ -25,7 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $upload_path = $upload_dir . $new_filename;
                 
                 if (move_uploaded_file($_FILES['favicon']['tmp_name'], $upload_path)) {
-                    updateSetting('site_favicon', 'assets/images/favicon/' . $new_filename);
+                    // Yolu kaydederken başında slash olmamalı, çünkü header'da ekleniyor
+                    updateSetting('site_favicon', 'assets/images/favicon/' . $new_filename . '?t=' . time());
+                    
+                    // Önbelleklerin temizlendiğinden emin olmak için
+                    clearstatcache();
                 } else {
                     $_SESSION['error_message'] = "Favicon yüklenirken bir hata oluştu.";
                 }
@@ -168,14 +184,24 @@ if (!empty($success)):
                                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                                         ICO, PNG, JPG, JPEG, GIF veya SVG formatında olmalıdır. Önerilen boyut: 32x32 veya 16x16 piksel
                                     </p>
+                                    <?php if(!empty(getSiteSetting('site_favicon'))): ?>
+                                    <div class="mt-2">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" name="remove_favicon" value="1" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500">
+                                            <span class="ml-2 text-sm text-red-600 dark:text-red-400">Mevcut favicon'u kaldır</span>
+                                        </label>
+                                    </div>
+                                    <?php endif; ?>
                                 </div>
                                 <?php 
                                 $current_favicon = getSiteSetting('site_favicon');
-                                if ($current_favicon && file_exists('../' . $current_favicon)): 
+                                if (!empty($current_favicon)): 
+                                // Önbellek kırıcı olarak timestamp ekle
+                                $cache_buster = '?v=' . time();
                                 ?>
                                 <div class="flex-shrink-0">
                                     <div class="w-16 h-16 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 flex items-center justify-center">
-                                        <img src="../<?php echo htmlspecialchars($current_favicon); ?>" 
+                                        <img src="/<?php echo ltrim($current_favicon, '/') . $cache_buster; ?>" 
                                              alt="Mevcut Favicon" 
                                              class="max-w-full max-h-full object-contain">
                                     </div>
