@@ -77,8 +77,9 @@ RewriteRule ^cerezler/?$ cookies.php [L,QSA]
 RewriteRule ^sifremi-unuttum/?$ sifremi-unuttum.php [L,QSA]
 RewriteRule ^sifre-sifirla/?$ sifre-sifirla.php [L,QSA]
 
-# Terms of Service: /terms
-RewriteRule ^terms/?$ terms.php [L,QSA]
+# Terms of Service: /terms and /kullanim-kosullari
+RewriteRule ^terms/?$ kullanim-kosullari.php [L,QSA]
+RewriteRule ^kullanim-kosullari/?$ kullanim-kosullari.php [L,QSA]
 
 # Sitemap: /sitemap.xml
 RewriteRule ^sitemap\.xml$ sitemap.php [L]

@@ -151,9 +151,9 @@ $current_page = $_GET['page'] ?? 'dashboard';
     $favicon = getSiteSetting('site_favicon');
     if ($favicon && file_exists('../' . $favicon)): 
     ?>
-    <link rel="icon" type="image/x-icon" href="../<?= $favicon ?>">
-    <link rel="shortcut icon" href="../<?= $favicon ?>">
-    <link rel="apple-touch-icon" href="../<?= $favicon ?>">
+    <link rel="icon" type="image/x-icon" href="../<?= ltrim($favicon, '/') ?>">
+    <link rel="shortcut icon" href="../<?= ltrim($favicon, '/') ?>">
+    <link rel="apple-touch-icon" href="../<?= ltrim($favicon, '/') ?>">
     <?php else: ?>
     <link rel="icon" type="image/x-icon" href="../favicon.png">
     <?php endif; ?>

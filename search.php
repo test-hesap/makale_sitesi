@@ -8,6 +8,7 @@ $db = $database->pdo;
 // Arama terimi
 $search_query = trim($_GET['q'] ?? '');
 $category_id = (int)($_GET['category'] ?? 0);
+$tag_slug = trim($_GET['tag'] ?? '');
 
 // Sayfalama
 $page = max(1, (int)($_GET['page'] ?? 1));
@@ -17,8 +18,74 @@ $offset = ($page - 1) * $per_page;
 $articles = [];
 $total_articles = 0;
 $total_pages = 0;
+$searching_by_tag = false;
+$tag_name = '';
 
-if (!empty($search_query)) {
+// Etiket araması
+if (!empty($tag_slug)) {
+    $searching_by_tag = true;
+    
+    // Etiket bilgilerini al
+    $tagQuery = "SELECT * FROM tags WHERE slug = ?";
+    $tagStmt = $db->prepare($tagQuery);
+    $tagStmt->execute([$tag_slug]);
+    $tag = $tagStmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($tag) {
+        $tag_name = $tag['name'];
+        
+        // Kategori filtresi
+        $category_filter = '';
+        $params = [$tag['id']];
+        
+        if ($category_id > 0) {
+            $category_filter = 'AND a.category_id = ?';
+            $params[] = $category_id;
+        }
+        
+        // Etiketle ilişkili makaleleri bul
+        $countQuery = "SELECT COUNT(*) FROM articles a 
+                       JOIN article_tags at ON a.id = at.article_id 
+                       LEFT JOIN categories c ON a.category_id = c.id 
+                       WHERE a.status = 'published' 
+                       AND at.tag_id = ? 
+                       $category_filter";
+        
+        $countStmt = $db->prepare($countQuery);
+        $countStmt->execute($params);
+        $total_articles = $countStmt->fetchColumn();
+        
+        $total_pages = ceil($total_articles / $per_page);
+        
+        // Etiket arama sonuçları
+        if ($total_articles > 0) {
+            $searchParams = $params;
+            $searchParams[] = $per_page;
+            $searchParams[] = $offset;
+            
+            $searchQuery = "SELECT a.*, c.name as category_name, c.slug as category_slug, 
+                                   u.username, u.username as author_name, u.profile_image 
+                            FROM articles a 
+                            JOIN article_tags at ON a.id = at.article_id 
+                            LEFT JOIN categories c ON a.category_id = c.id 
+                            LEFT JOIN users u ON a.user_id = u.id 
+                            WHERE a.status = 'published' 
+                            AND at.tag_id = ? 
+                            $category_filter
+                            ORDER BY a.created_at DESC 
+                            LIMIT ? OFFSET ?";
+            
+            $searchStmt = $db->prepare($searchQuery);
+            $searchStmt->execute($searchParams);
+            $articles = $searchStmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Arama terimini etiket adı olarak ayarla (vurgulama için)
+            $search_query = $tag_name;
+        }
+    }
+}
+// Normal metin araması
+else if (!empty($search_query)) {
     $search_term = '%' . $search_query . '%';
     
     // Kategori filtresi
@@ -131,11 +198,18 @@ include 'includes/header.php';
                 </form>
             </div>
 
-            <?php if (!empty($search_query)): ?>
+            <?php if (!empty($search_query) || !empty($tag_slug)): ?>
             <!-- Arama Sonuçları Başlığı -->
             <div class="mb-6">
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                    <?php if ($searching_by_tag): ?>
+                    <span class="flex items-center">
+                        <i class="fas fa-tag text-blue-500 mr-2"></i>
+                        #<?php echo htmlspecialchars($tag_name); ?> Etiketli İçerikler
+                    </span>
+                    <?php else: ?>
                     "<?php echo htmlspecialchars($search_query); ?>" Arama Sonuçları
+                    <?php endif; ?>
                 </h1>
                 <p class="text-gray-600 dark:text-gray-400">
                     <?php echo $total_articles; ?> sonuç bulundu
@@ -218,7 +292,7 @@ include 'includes/header.php';
             <div class="flex justify-center">
                 <nav class="flex items-center space-x-2">
                     <?php if ($page > 1): ?>
-                    <a href="?q=<?php echo urlencode($search_query); ?>&category=<?php echo $category_id; ?>&page=<?php echo $page - 1; ?>" 
+                    <a href="?<?php echo $searching_by_tag ? 'tag=' . urlencode($tag_slug) : 'q=' . urlencode($search_query); ?>&category=<?php echo $category_id; ?>&page=<?php echo $page - 1; ?>" 
                        class="px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                         <i class="fas fa-chevron-left"></i>
                     </a>
@@ -230,14 +304,14 @@ include 'includes/header.php';
                     
                     for ($i = $start; $i <= $end; $i++):
                     ?>
-                    <a href="?q=<?php echo urlencode($search_query); ?>&category=<?php echo $category_id; ?>&page=<?php echo $i; ?>" 
+                    <a href="?<?php echo $searching_by_tag ? 'tag=' . urlencode($tag_slug) : 'q=' . urlencode($search_query); ?>&category=<?php echo $category_id; ?>&page=<?php echo $i; ?>" 
                        class="px-3 py-2 text-sm <?php echo $i == $page ? 'bg-blue-600 text-white' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'; ?> border border-gray-300 dark:border-gray-600 rounded-lg transition-colors">
                         <?php echo $i; ?>
                     </a>
                     <?php endfor; ?>
 
                     <?php if ($page < $total_pages): ?>
-                    <a href="?q=<?php echo urlencode($search_query); ?>&category=<?php echo $category_id; ?>&page=<?php echo $page + 1; ?>" 
+                    <a href="?<?php echo $searching_by_tag ? 'tag=' . urlencode($tag_slug) : 'q=' . urlencode($search_query); ?>&category=<?php echo $category_id; ?>&page=<?php echo $page + 1; ?>" 
                        class="px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                         <i class="fas fa-chevron-right"></i>
                     </a>
@@ -252,7 +326,11 @@ include 'includes/header.php';
                 <i class="fas fa-search text-6xl text-gray-300 dark:text-gray-600 mb-4"></i>
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">Sonuç bulunamadı</h3>
                 <p class="text-gray-600 dark:text-gray-400 mb-6">
+                    <?php if ($searching_by_tag): ?>
+                    <span class="font-medium">#<?php echo htmlspecialchars($tag_name); ?></span> etiketli herhangi bir içerik bulunamadı.
+                    <?php else: ?>
                     "<?php echo htmlspecialchars($search_query); ?>" için herhangi bir sonuç bulunamadı.
+                    <?php endif; ?>
                 </p>
                 <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 text-left max-w-md mx-auto">
                     <h4 class="font-medium text-gray-900 dark:text-white mb-3">Arama önerileri:</h4>

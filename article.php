@@ -39,6 +39,17 @@ $stmt = $db->prepare($query);
 $stmt->execute([$slug]);
 $article = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Etiketleri getir
+if ($article) {
+    $tagQuery = "SELECT t.name, t.slug 
+                FROM tags t 
+                JOIN article_tags at ON t.id = at.tag_id 
+                WHERE at.article_id = ?";
+    $tagStmt = $db->prepare($tagQuery);
+    $tagStmt->execute([$article['id']]);
+    $tags = $tagStmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 // Makale bulunamadıysa debug bilgisi ekle
 if (!$article) {
     error_log("Article not found with slug: " . $slug);
@@ -205,7 +216,61 @@ include 'includes/header.php';
                     </div>
 
                     <!-- İçerik -->
-                    <div class="article-content prose prose-lg max-w-none dark:prose-dark">
+                    <div class="article-content prose max-w-none dark:prose-dark">
+                        <style>
+                            .article-content {
+                                font-size: 1rem;
+                                line-height: 1.6;
+                            }
+                            .article-content p {
+                                margin-bottom: 1rem;
+                                line-height: 1.6;
+                            }
+                            .article-content h1 {
+                                font-size: 2rem; /* 32px - daha büyük değer */
+                                font-weight: 700;
+                                margin-top: 1.75rem;
+                                margin-bottom: 1rem;
+                                color: #111827; /* dark gray-900 */
+                            }
+                            .dark .article-content h1 {
+                                color: #f9fafb; /* dark mode: gray-50 */
+                            }
+                            .article-content h2 {
+                                font-size: 1.5rem; /* 24px */
+                                font-weight: 700;
+                                margin-top: 1.5rem;
+                                margin-bottom: 0.875rem;
+                                color: #1f2937; /* gray-800 */
+                            }
+                            .dark .article-content h2 {
+                                color: #f3f4f6; /* dark mode: gray-100 */
+                            }
+                            .article-content h3, .article-content h4 {
+                                margin-top: 1.5rem;
+                                margin-bottom: 0.75rem;
+                                font-weight: 600;
+                                color: #374151; /* gray-700 */
+                            }
+                            .dark .article-content h3, .dark .article-content h4 {
+                                color: #e5e7eb; /* dark mode: gray-200 */
+                            }
+                            .article-content h3 {
+                                font-size: 1.25rem; /* 20px */
+                            }
+                            .article-content h4 {
+                                font-size: 1.125rem; /* 18px */
+                            }
+                            .article-content ul, .article-content ol {
+                                margin-bottom: 1.5rem;
+                            }
+                            .article-content li {
+                                margin-bottom: 0.5rem;
+                            }
+                            .article-content img {
+                                margin: 1.5rem 0;
+                            }
+                        </style>
                         <?php if ($premium_required): ?>
                         <!-- Premium İçerik Uyarısı -->
                         <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900 dark:to-yellow-800 border border-yellow-200 dark:border-yellow-700 rounded-lg p-6 text-center">
@@ -260,9 +325,23 @@ include 'includes/header.php';
                                 $totalParts = count($parts);
                                 $middleIndex = floor($totalParts / 2);
                                 
+                                // İçeriği HTML olarak çözümle
+                                $dom = new DOMDocument();
+                                // HTML5 etiketleri için hataları engelle
+                                libxml_use_internal_errors(true);
+                                $dom->loadHTML('<?xml encoding="utf-8"?><div>' . $article['content'] . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                                libxml_clear_errors();
+                                
+                                // Tüm elemanları al
+                                $elements = $dom->getElementsByTagName('body')->item(0)->childNodes->item(0)->childNodes;
+                                
+                                // Toplam eleman sayısı
+                                $totalElements = $elements->length;
+                                $middleIdx = floor($totalElements / 2);
+                                
                                 // İlk yarıyı göster
-                                for ($i = 0; $i < $middleIndex; $i++) {
-                                    echo $parts[$i] . '</p>';
+                                for ($i = 0; $i < $middleIdx; $i++) {
+                                    echo $dom->saveHTML($elements->item($i));
                                 }
                                 
                                 // Ortada reklamı göster
@@ -273,12 +352,14 @@ include 'includes/header.php';
                                     </div>';
                                 
                                 // Kalan içeriği göster
-                                for ($i = $middleIndex; $i < $totalParts; $i++) {
-                                    echo $parts[$i] . '</p>';
+                                for ($i = $middleIdx; $i < $totalElements; $i++) {
+                                    echo $dom->saveHTML($elements->item($i));
                                 }
                             } else {
-                                // Reklam yoksa içeriği olduğu gibi göster
-                                echo $article['content'];
+                                // Reklam yoksa içeriği olduğu gibi göster, ancak paragraf formatını düzelt
+                                $content = $article['content'];
+                                // İçeriği olduğu gibi göster, HTML etiketleri düzgün işlenecektir
+                                echo $content;
                             }
                             ?>
 
@@ -300,23 +381,23 @@ include 'includes/header.php';
                     </div>
 
                     <!-- Etiketler -->
-                    <?php if (isset($article['tags']) && !empty($article['tags'])): ?>
+                    <?php if (isset($tags) && !empty($tags)): ?>
                     <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                        <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-3">Etiketler:</h4>
+                        <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-4 flex items-center">
+                            <i class="fas fa-tags mr-2 text-blue-500"></i>
+                            <span>Etiketler</span>
+                        </h4>
                         <div class="flex flex-wrap gap-2">
-                            <?php 
-                            $tags = explode(',', $article['tags']);
-                            foreach ($tags as $tag): 
-                                $tag = trim($tag);
-                                if (!empty($tag)):
-                            ?>
-                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">
-                                #<?php echo htmlspecialchars($tag); ?>
-                            </span>
-                            <?php 
-                                endif;
-                            endforeach; 
-                            ?>
+                            <?php foreach ($tags as $tag): ?>
+                            <a href="/search.php?tag=<?php echo urlencode($tag['slug']); ?>" 
+                               class="bg-blue-50 dark:bg-gray-700 hover:bg-blue-100 
+                                     dark:hover:bg-gray-600 text-blue-700 dark:text-blue-300 
+                                     text-xs font-medium px-3 py-1.5 rounded-md transition-all duration-200
+                                     border-l-2 border-blue-500 dark:border-blue-400
+                                     hover:translate-x-0.5 hover:-translate-y-0.5">
+                                <span class="text-blue-500 mr-1">#</span><?php echo htmlspecialchars($tag['name']); ?>
+                            </a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                     <?php endif; ?>
