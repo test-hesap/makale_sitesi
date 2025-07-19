@@ -1,0 +1,20 @@
+{
+    "enabled": true,
+    "title": "Site Bakımda",
+    "message": "Sitemiz şu anda bakım aşamasındadır. Lütfen daha sonra tekrar deneyiniz.",
+    "bg_color": "#1f2937",
+    "countdown": {
+        "enabled": true,
+        "datetime": "2025-07-17 11:33"
+    },
+    "progress": {
+        "enabled": true,
+        "percentage": 0
+    },
+    "social": {
+        "enabled": false,
+        "twitter": "",
+        "facebook": "",
+        "instagram": ""
+    }
+}

@@ -1,0 +1,26 @@
+# Güvenlik: PHP ve diğer çalıştırılabilir dosyaların yürütülmesini engelle
+Options -ExecCGI
+AddHandler cgi-script .php .pl .py .jsp .asp .sh .cgi
+
+# PHP dosyalarının çalıştırılmasını engelle
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|sh|cgi)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Sadece belirli dosya türlerinin erişimine izin ver
+<FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# Directory browsing'i engelle
+Options -Indexes
+
+# Server bilgilerini gizle
+ServerSignature Off
+
+# Dosya yükleme güvenliği
+php_flag file_uploads off
+php_flag allow_url_include off
+php_flag allow_url_fopen off

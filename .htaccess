@@ -1,0 +1,237 @@
+RewriteEngine On
+RewriteBase /
+
+# Statik dosyaları (CSS, JS, images, fonts) rewrite'tan hariç tut
+RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|webp)$ [NC]
+RewriteRule .* - [L]
+
+# Assets klasörüne direkt erişime izin ver
+RewriteRule ^assets/ - [L]
+
+# Güvenlik için hassas dosyaları engelle
+<FilesMatch "\.(env|log|sql|md|json|lock|gitignore)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Config ve includes dizinlerine erişimi engelle
+RewriteRule ^(config|includes|database)/ - [F,L]
+
+# HTTPS yönlendirmesi (production için)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# WWW olmayan versiyona yönlendir (isteğe bağlı)
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Ana sayfa
+RewriteRule ^$ index.php [L]
+
+# Üye profil sayfası: /uye/username
+RewriteRule ^uye/([a-zA-Z0-9\-_]+)/?$ uye.php?username=$1 [L,QSA]
+
+# Makale sayfaları: /makale/slug
+RewriteRule ^makale/([a-zA-Z0-9\-_]+)/?$ article.php?slug=$1 [L,QSA]
+
+# Kategori sayfaları: /kategori/slug ve /category/slug
+RewriteRule ^(kategori|category)/([a-zA-Z0-9\-_]+)/?$ category.php?slug=$2 [L,QSA]
+
+# Arama sayfası: /search
+RewriteRule ^search/?$ search.php [L,QSA]
+
+# Premium sayfası: /premium
+RewriteRule ^premium/?$ premium.php [L,QSA]
+
+# Kullanıcı profil sayfası: /user/username
+RewriteRule ^user/([a-zA-Z0-9\-_]+)/?$ user.php?username=$1 [L,QSA]
+
+# Sayfalar: /page/slug
+RewriteRule ^page/([a-zA-Z0-9\-_]+)/?$ page.php?slug=$1 [L,QSA]
+
+# İletişim sayfası: /iletisim ve /contact
+RewriteRule ^(iletisim|contact)/?$ contact.php [L,QSA]
+
+# Hakkımızda sayfası: /hakkinda ve /about  
+RewriteRule ^(hakkinda|about)/?$ about.php [L,QSA]
+
+# Üyeler sayfası: /uyeler ve /members
+RewriteRule ^(uyeler|members)/?$ members.php [L,QSA]
+
+# Profil sayfası: /profil ve /profile
+RewriteRule ^(profil|profile)/?$ profile.php [L,QSA]
+
+# Makale ekleme: /makale_ekle ve /create-article
+RewriteRule ^makale_ekle/?$ create-article.php [L,QSA]
+RewriteRule ^create-article/?$ create-article.php [L,QSA]
+
+# Privacy Policy: /privacy
+RewriteRule ^privacy/?$ privacy.php [L,QSA]
+RewriteRule ^gizlilik-politikasi/?$ privacy.php [L,QSA]
+
+# Cookies Policy: /cookies
+RewriteRule ^cookies/?$ cookies.php [L,QSA]
+RewriteRule ^cerezler/?$ cookies.php [L,QSA]
+
+# Şifre işlemleri: /sifremi-unuttum ve /sifre-sifirla
+RewriteRule ^sifremi-unuttum/?$ sifremi-unuttum.php [L,QSA]
+RewriteRule ^sifre-sifirla/?$ sifre-sifirla.php [L,QSA]
+
+# Terms of Service: /terms and /kullanim-kosullari
+RewriteRule ^terms/?$ kullanim-kosullari.php [L,QSA]
+RewriteRule ^kullanim-kosullari/?$ kullanim-kosullari.php [L,QSA]
+
+# Sitemap: /sitemap.xml
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# Robots.txt: /robots.txt
+RewriteRule ^robots\.xml$ robots.php [L]
+
+# RSS Feed: /feed.xml
+RewriteRule ^feed\.xml$ feed.php [L]
+
+# Admin paneli: /admin (sadece admin klasörü varsa)
+RewriteRule ^admin/?$ admin/index.php [L]
+RewriteRule ^admin/(.*)$ admin/$1 [L]
+
+# Ödeme sayfaları: /payment
+RewriteRule ^payment/(.*)$ payment/$1 [L]
+
+# API endpointleri: /api (mevcut API dosyalarını etkilemez)
+RewriteRule ^api/(.*)$ api/$1 [L]
+
+# Auth sayfaları: /auth (mevcut auth dosyalarını etkilemez)
+RewriteRule ^auth/(.*)$ auth/$1 [L]
+
+# Dosya uzantılarını gizle (PHP, HTML)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Trailing slash kaldır
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [R=301,L]
+
+# Cache ayarları
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Resimler için 1 ay
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    
+    # CSS ve JS için 1 hafta
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    
+    # HTML için 1 gün
+    ExpiresByType text/html "access plus 1 day"
+    
+    # Fontlar için 1 ay
+    ExpiresByType font/woff "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 month"
+    ExpiresByType application/font-woff "access plus 1 month"
+    ExpiresByType application/font-woff2 "access plus 1 month"
+</IfModule>
+
+# Gzip sıkıştırma
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    
+    # Şu dosya türlerini sıkıştırma
+    SetEnvIfNoCase Request_URI \
+        \.(?:gif|jpe?g|png|zip|gz|rar|bz2|7z)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI \
+        \.(?:exe|t?gz|zip|bz2|sit|rar|7z)$ no-gzip dont-vary
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    # XSS koruması
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Content type sniffing'i engelle
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Clickjacking koruması
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Referrer policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # CSP (Content Security Policy) - gerektiğinde güncelleyin
+    # Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com; font-src 'self' fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"
+</IfModule>
+
+# Hotlinking koruması (resimler için)
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?yourdomain\.com [NC]
+RewriteRule \.(jpe?g|png|gif|webp)$ - [F]
+
+# Dizin listesini devre dışı bırak
+Options -Indexes
+
+# PHP hata raporlamasını kapat (production için)
+php_flag display_errors Off
+php_flag log_errors On
+
+# Upload sınırları
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_execution_time 300
+php_value max_input_time 300
+
+# Session güvenliği
+php_flag session.cookie_httponly On
+php_flag session.cookie_secure On
+php_flag session.use_only_cookies On
+
+# Karakter kodlaması
+AddDefaultCharset UTF-8
+
+# MIME types
+AddType application/font-woff .woff
+AddType application/font-woff2 .woff2
+
+# Error pages
+ErrorDocument 404 /404.php
+ErrorDocument 403 /403.php
+ErrorDocument 500 /500.php
+
+# Temel yönlendirmeler
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Auth yönlendirmeleri
+RewriteRule ^login$ login.php [L]
+RewriteRule ^register$ register.php [L]
+
+# Diğer yönlendirmeler
+RewriteRule ^kategori/([^/]+)$ category.php?slug=$1 [L,QSA]
+RewriteRule ^yazar/([^/]+)/?$ author.php?username=$1 [L,QSA]
+RewriteRule ^etiket/([^/]+)/?$ tag.php?slug=$1 [L,QSA]
+
+# Özel sayfalar
+RewriteRule ^iletisim$ contact.php [L]
+RewriteRule ^hakkinda$ about.php [L]
+RewriteRule ^premium$ premium.php [L]
+RewriteRule ^profil$ profile.php [L]
+RewriteRule ^mesajlar$ messages.php [L]
+RewriteRule ^uyeler$ members.php [L]
+RewriteRule ^makale-ekle$ create-article.php [L]
+
+# Hata sayfaları
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php 
