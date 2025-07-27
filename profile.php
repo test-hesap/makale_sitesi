@@ -129,9 +129,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     } elseif ($action === 'change_password') {
-        $currentPassword = $_POST['current_password'] ?? '';
-        $newPassword = $_POST['new_password'] ?? '';
-        $confirmPassword = $_POST['confirm_password'] ?? '';
+        $currentPassword = $_POST['passwd_current'] ?? '';
+        $newPassword = $_POST['passwd_new'] ?? '';
+        $confirmPassword = $_POST['passwd_confirm'] ?? '';
         
         if (empty($currentPassword) || empty($newPassword) || empty($confirmPassword)) {
             $error = $language == 'en' ? 'Please fill in all password fields.' : 'Tüm şifre alanlarını doldurun.';
@@ -350,6 +350,9 @@ try {
                             <p class="text-gray-600 dark:text-gray-400 text-sm">
                                 <?= $language == 'en' ? 'You have access to premium features' : 'Premium özelliklere erişiminiz var' ?>
                             </p>
+                            <a href="/subscription" class="inline-block mt-2 text-yellow-600 dark:text-yellow-400 text-sm hover:underline">
+                                <i class="fas fa-cog mr-1"></i> <?= $language == 'en' ? 'Manage Subscription' : 'Aboneliği Yönet' ?>
+                            </a>
                             <?php else: ?>
                             <h3 class="font-medium text-gray-600 dark:text-gray-400 mb-2">
                                 <i class="fas fa-user mr-2"></i><?= $language == 'en' ? 'Member Account' : 'Üye Hesabı' ?>
@@ -391,6 +394,25 @@ try {
                                 fileSelectedDiv.textContent = language == 'en' ? 'No file selected' : 'Seçilen dosya yok';
                             }
                         }
+
+                        // Firefox'ta şifre alanlarında sarı arka planı önlemek için
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // CSS ekle
+                            const style = document.createElement('style');
+                            style.textContent = `
+                                input[type="password"] {
+                                    background-color: inherit !important;
+                                }
+                                input:-webkit-autofill,
+                                input:-webkit-autofill:hover,
+                                input:-webkit-autofill:focus,
+                                input:-webkit-autofill:active {
+                                    -webkit-box-shadow: 0 0 0 30px inherit inset !important;
+                                    -webkit-text-fill-color: inherit !important;
+                                }
+                            `;
+                            document.head.appendChild(style);
+                        });
                         </script>
                     </div>
                 </div>
@@ -446,24 +468,30 @@ try {
                             <label for="current_password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 <?= $language == 'en' ? 'Current Password' : 'Mevcut Şifre' ?>
                             </label>
-                            <input type="password" id="current_password" name="current_password" required
-                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <input type="password" id="current_password" name="passwd_current" required
+                                   autocomplete="off" 
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                   readonly onfocus="this.removeAttribute('readonly');">
                         </div>
                         
                         <div>
                             <label for="new_password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 <?= $language == 'en' ? 'New Password' : 'Yeni Şifre' ?>
                             </label>
-                            <input type="password" id="new_password" name="new_password" required
-                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <input type="password" id="new_password" name="passwd_new" required
+                                   autocomplete="off"
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                   readonly onfocus="this.removeAttribute('readonly');">
                         </div>
                         
                         <div>
                             <label for="confirm_password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 <?= $language == 'en' ? 'New Password (Repeat)' : 'Yeni Şifre (Tekrar)' ?>
                             </label>
-                            <input type="password" id="confirm_password" name="confirm_password" required
-                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <input type="password" id="confirm_password" name="passwd_confirm" required
+                                   autocomplete="off"
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                                   readonly onfocus="this.removeAttribute('readonly');">
                         </div>
                         
                         <div class="text-right">

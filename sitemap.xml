@@ -2,38 +2,158 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://localhost/</loc>
-    <lastmod>2025-07-17T14:24:04+02:00</lastmod>
+    <lastmod>2025-07-27T12:06:30+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost/premium</loc>
-    <lastmod>2025-07-17T14:24:04+02:00</lastmod>
+    <lastmod>2025-07-27T12:06:30+02:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://localhost/search</loc>
-    <lastmod>2025-07-17T14:24:04+02:00</lastmod>
+    <lastmod>2025-07-27T12:06:30+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://localhost/contact</loc>
-    <lastmod>2025-07-17T14:24:04+02:00</lastmod>
+    <lastmod>2025-07-27T12:06:30+02:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://localhost/about</loc>
-    <lastmod>2025-07-17T14:24:04+02:00</lastmod>
+    <lastmod>2025-07-27T12:06:30+02:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://localhost/privacy</loc>
-    <lastmod>2025-07-17T14:24:04+02:00</lastmod>
+    <lastmod>2025-07-27T12:06:30+02:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>http://localhost/kategori/teknoloji</loc>
+    <lastmod>2025-07-10T22:10:58+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>http://localhost/kategori/saglik</loc>
+    <lastmod>2025-07-10T22:13:54+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>http://localhost/kategori/telefon</loc>
+    <lastmod>2025-07-10T22:17:08+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>http://localhost/kategori/gezi-rehberi</loc>
+    <lastmod>2025-07-10T22:19:29+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>http://localhost/kategori/yasam</loc>
+    <lastmod>2025-07-27T13:06:30+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/dijital-kutsal-kase-telefonunuzun-gizli-gucunu-kesfedin</loc>
+    <lastmod>2025-07-27T12:52:09+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/dijital-golgemizin-gizli-hayati-3-7-milyar-yildizi-sayabilecek-bir-teknoloji-mumkun-mu</loc>
+    <lastmod>2025-07-27T12:50:44+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/kayip-sehirlerin-fisiltilari-7-gizli-cennetin-rituel-yolculugu</loc>
+    <lastmod>2025-07-27T12:49:50+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/kayip-sehirlerin-gizli-nefesleri-7-ruh-soluyan-gezi-rotasi</loc>
+    <lastmod>2025-07-27T12:20:57+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/kayip-sehirlerin-fisiltilari-7-gizemli-yolculuk-ruhunuzu-buyuleyecek</loc>
+    <lastmod>2025-07-27T12:15:03+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/kayip-sehirlerin-fisiltisi-7-gizli-cennet-ve-kalbinizi-calacak-anilar</loc>
+    <lastmod>2025-07-27T01:34:17+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/telefonunuzun-gizli-yasami-7-milyar-gozun-sirrini-cozuyor-mu</loc>
+    <lastmod>2025-07-27T00:55:49+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/vucudunuzun-fisiltilari-7-gunde-inanilmaz-bir-donusum-mumkun-mu</loc>
+    <lastmod>2025-07-27T00:54:22+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/kayip-sehirlerin-fisiltisi-7-gizli-cennet-unutulmus-tarihler</loc>
+    <lastmod>2025-07-27T00:49:49+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/unutulmaz-bir-gezi-icin-tam-kapsamli-gezi-rehberi</loc>
+    <lastmod>2025-07-27T00:38:27+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/saglikli-yasam-icin-pratik-ipuclari-ve-onemli-bilgiler</loc>
+    <lastmod>2025-07-27T00:37:27+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/surdurulebilir-turizm-ve-gelecegin-gezi-trendleri</loc>
+    <lastmod>2025-07-26T19:16:29+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/akilli-telefonlarin-evrimi-ve-gelecegi</loc>
+    <lastmod>2025-07-14T13:29:14+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/telemedicine-ve-saglik-hizmetlerinin-gelecegi</loc>
+    <lastmod>2025-07-10T22:15:50+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/makale/kuantum-bilgisayarin-gelecegi</loc>
+    <lastmod>2025-07-10T22:12:51+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

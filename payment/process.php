@@ -108,11 +108,11 @@ try {
             
             $paymentId = $db->lastInsertId();
             
-            // Varolan aktif abonelikleri sonlandır
+            // Varolan aktif ve iptal edilmiş abonelikleri sonlandır
             $stmt = $db->prepare("
                 UPDATE user_subscriptions 
                 SET status = 'expired', end_date = NOW()
-                WHERE user_id = ? AND status = 'active'
+                WHERE user_id = ? AND (status = 'active' OR status = 'cancelled')
             ");
             $stmt->execute([$currentUser['id']]);
             

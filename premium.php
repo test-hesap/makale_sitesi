@@ -159,6 +159,11 @@ try {
             <div class="text-sm mt-2">
                 <?= $language == 'en' ? 'You can switch to a longer plan or renew your current plan.' : 'Daha uzun süreli bir plana geçiş yapabilir veya mevcut planınızı yenileyebilirsiniz.' ?>
             </div>
+            <div class="mt-3">
+                <a href="/subscription" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-cog mr-2"></i> <?= $language == 'en' ? 'Manage My Subscription' : 'Aboneliğimi Yönet' ?>
+                </a>
+            </div>
         </div>
         <?php endif; ?>
     </div>
@@ -266,7 +271,7 @@ try {
                     </ul>
                     <?php endif; ?>
                     
-                    <?php if ($currentUser['is_premium'] && isset($activeSubscription)): ?>
+                    <?php if ($currentUser['is_premium'] && isset($activeSubscription) && is_array($activeSubscription)): ?>
                         <?php
                         $currentPlanPrice = floatval($activeSubscription['plan_price']);
                         

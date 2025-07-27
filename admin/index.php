@@ -1,9 +1,13 @@
 <?php
+// Çıktı tamponlamasını başlat
+ob_start();
+
 // Base path tanımı
 define('BASE_PATH', dirname(__DIR__));
 
 require_once '../config/database.php';
 require_once '../includes/functions.php';
+require_once 'includes/functions.php';
 
 // Admin kontrolü
 if (!isLoggedIn() || !isUserAdmin()) {
@@ -268,6 +272,10 @@ $current_page = $_GET['page'] ?? 'dashboard';
                         <i class="fas fa-th-list w-5"></i>
                         <span>Makale Gösterimi</span>
                     </a>
+                    <a href="?page=makale-botu" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'makale-botu' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
+                        <i class="fas fa-robot w-5"></i>
+                        <span>Makale Botu</span>
+                    </a>
                 </div>
             </div>
 
@@ -283,6 +291,27 @@ $current_page = $_GET['page'] ?? 'dashboard';
                         <span>Kullanıcılar</span>
                         <?php if ($stats['users']['pending'] > 0): ?>
                         <span class="bg-orange-500 text-white text-xs px-2 py-1 rounded-full"><?php echo $stats['users']['pending']; ?></span>
+                        <?php endif; ?>
+                    </a>
+                    <a href="?page=ban-users" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'ban-users' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
+                        <i class="fas fa-gavel w-5"></i>
+                        <span>Üye Banla</span>
+                    </a>
+                    <a href="?page=banned-users" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'banned-users' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
+                        <i class="fas fa-user-slash w-5"></i>
+                        <span>Banlı Üyeler</span>
+                        <?php 
+                            $bannedCount = 0;
+                            try {
+                                $banQuery = "SELECT COUNT(*) FROM banned_users WHERE is_active = 1";
+                                $banStmt = $db->prepare($banQuery);
+                                $banStmt->execute();
+                                $bannedCount = $banStmt->fetchColumn();
+                            } catch (Exception $e) {}
+                            
+                            if ($bannedCount > 0):
+                        ?>
+                        <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full"><?php echo $bannedCount; ?></span>
                         <?php endif; ?>
                     </a>
                     <a href="?page=messages" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'messages' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
@@ -309,6 +338,26 @@ $current_page = $_GET['page'] ?? 'dashboard';
                     <a href="?page=subscriptions" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'subscriptions' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
                         <i class="fas fa-crown w-5"></i>
                         <span>Abonelik Planları</span>
+                    </a>
+                    <a href="?page=user_subscriptions" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'user_subscriptions' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
+                        <i class="fas fa-users-cog w-5"></i>
+                        <span>Kullanıcı Abonelikleri</span>
+                        <?php 
+                            try {
+                                $expiring_count = 0;
+                                if ($db) {
+                                    $expiringQuery = "SELECT COUNT(*) FROM user_subscriptions WHERE status = 'active' AND end_date BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 7 DAY)";
+                                    $expiringStmt = $db->prepare($expiringQuery);
+                                    $expiringStmt->execute();
+                                    $expiring_count = $expiringStmt->fetchColumn();
+                                }
+                                
+                                if ($expiring_count > 0): 
+                            ?>
+                            <span class="bg-orange-500 text-white text-xs px-2 py-1 rounded-full"><?php echo $expiring_count; ?></span>
+                            <?php endif; 
+                            } catch (Exception $e) {} 
+                            ?>
                     </a>
                     <a href="?page=promo-codes" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'promo-codes' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
                         <i class="fas fa-ticket-alt w-5"></i>
@@ -410,6 +459,7 @@ $current_page = $_GET['page'] ?? 'dashboard';
                             'messages' => 'Mesajlar',
                             'payments' => 'Ödemeler',
                             'subscriptions' => 'Abonelik Planları',
+                            'user_subscriptions' => 'Kullanıcı Abonelikleri',
                             'promo-codes' => 'Promosyon Kodları',
                             'settings' => 'Site Ayarları',
                             'ads' => 'Reklamlar',
@@ -418,7 +468,8 @@ $current_page = $_GET['page'] ?? 'dashboard';
                             'cloudflare' => 'Cloudflare CAPTCHA',
                             'sitemap' => 'Sitemap Yönetimi',
                             'maintenance-mode' => 'Bakım Modu',
-                            'cookies' => 'Çerez Ayarları'
+                            'cookies' => 'Çerez Ayarları',
+                            'makale-botu' => 'Makale Botu'
                         ];
                         echo $page_titles[$current_page] ?? 'Dashboard';
                         ?>
@@ -544,6 +595,12 @@ $current_page = $_GET['page'] ?? 'dashboard';
                 case 'users':
                     include 'pages/users.php';
                     break;
+                case 'ban-users':
+                    include 'pages/ban-users.php';
+                    break;
+                case 'banned-users':
+                    include 'pages/banned-users/index.php';
+                    break;
                 case 'messages':
                     include 'pages/messages.php';
                     break;
@@ -555,6 +612,9 @@ $current_page = $_GET['page'] ?? 'dashboard';
                     break;
                 case 'subscriptions':
                     include 'pages/subscriptions.php';
+                    break;
+                case 'user_subscriptions':
+                    include 'pages/user_subscriptions.php';
                     break;
                 case 'promo-codes':
                     include 'pages/promo-codes.php';
@@ -582,6 +642,9 @@ $current_page = $_GET['page'] ?? 'dashboard';
                     break;
                 case 'cloudflare':
                     include 'pages/cloudflare.php';
+                    break;
+                case 'makale-botu':
+                    include 'pages/makale-botu.php';
                     break;
             }
             ?>

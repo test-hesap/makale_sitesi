@@ -792,6 +792,10 @@ document.addEventListener('DOMContentLoaded', function() {
     updateBulkActions();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // İşlem kodları buraya gelecek
+});
+
 function submitBulkAction(action) {
     const checkedBoxes = document.querySelectorAll('.user-checkbox:checked');
     
@@ -836,7 +840,9 @@ function submitBulkAction(action) {
             form.appendChild(userInput);
         });
         
+        // Formu gönder
         form.submit();
     }
 }
 </script>
+

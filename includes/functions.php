@@ -9,6 +9,9 @@ if (session_status() === PHP_SESSION_NONE && !isset($_SESSION)) {
     session_start();
 }
 
+// Ban fonksiyonlarını dahil et
+require_once APP_ROOT . '/includes/ban_functions.php';
+
 // Temel güvenlik fonksiyonları
 function sanitizeInput($input) {
     return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
@@ -91,13 +94,61 @@ function checkRememberToken() {
     return false;
 }
 
+/**
+ * Oturumu sonlandırır ve çerezleri temizler
+ * 
+ * @param string|null $redirectUrl Yönlendirilecek URL
+ */
+function logout($redirectUrl = null) {
+    // Oturumu sonlandır
+    session_destroy();
+    
+    // Çerezleri temizle
+    if (isset($_COOKIE[session_name()])) {
+        setcookie(session_name(), '', time() - 3600, '/');
+    }
+    
+    // "Beni hatırla" tokenını temizle
+    if (isset($_COOKIE['remember_token'])) {
+        if (isset($_SESSION['user_id'])) {
+            try {
+                require_once APP_ROOT . '/config/database.php';
+                $database = new Database();
+                $database->query(
+                    "DELETE FROM remember_tokens WHERE user_id = ? OR token = ?",
+                    [$_SESSION['user_id'], $_COOKIE['remember_token']]
+                );
+            } catch (Exception $e) {
+                error_log('Çıkış yapılırken token silme hatası: ' . $e->getMessage());
+            }
+        }
+        
+        setcookie('remember_token', '', time() - 3600, '/', '', false, true);
+    }
+    
+    // Yönlendirme varsa yönlendir
+    if ($redirectUrl) {
+        header('Location: ' . $redirectUrl);
+        exit;
+    }
+}
+
 function getCurrentUser() {
     if (!isLoggedIn()) return null;
     
     require_once APP_ROOT . '/config/database.php';
     $database = new Database();
     $stmt = $database->query("SELECT * FROM users WHERE id = ?", [$_SESSION['user_id']]);
-    return $stmt->fetch();
+    $user = $stmt->fetch();
+    
+    // Kullanıcı banlı mı kontrol et
+    if ($user && isUserBanned($user['id'])) {
+        // Kullanıcı banlıysa banlı sayfasına yönlendir
+        header('Location: /banned.php');
+        exit;
+    }
+    
+    return $user;
 }
 
 function isAdmin() {

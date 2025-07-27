@@ -1,5 +1,6 @@
 <?php
 require_once 'config/database.php';
+require_once 'includes/ip_helper.php';
 require_once 'includes/functions.php';
 
 // Zaten giriş yapmışsa ana sayfaya yönlendir
@@ -11,12 +12,23 @@ if (isLoggedIn()) {
 $database = new Database();
 $settings = getSettings();
 
+// IP kontrolü - Banlı IP ise kayıt olmayı engelle
+$clientIP = alternativeGetClientIP();
+if (isIPBanned($clientIP)) {
+    $error = getCurrentLanguage() == 'en' ? 'Registration is not available from your IP address.' : 'IP adresinizden kayıt yapılamıyor.';
+    // Logla
+    error_log("Banned IP attempted registration: $clientIP");
+}
+
 // Form gönderildi mi?
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isIPBanned($clientIP)) {
     $username = trim($_POST['username'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     $passwordConfirm = $_POST['password_confirm'] ?? '';
+    
+    // Kayıt denemesini takip et
+    trackRegistrationAttempt($username, $email, false);
     
     try {
         // Dil kontrolü
@@ -105,6 +117,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         
+        // Kayıt denemesini başarılı olarak kaydet
+        trackRegistrationAttempt($username, $email, true);
+        
+        // Kullanıcının IP adresini kaydet
+        $clientIP = getClientIP();
+        $database->query(
+            "UPDATE users SET last_ip = ? WHERE id = ?",
+            [$clientIP, $userId]
+        );
+        
         // Direkt giriş yap
         $_SESSION['user_id'] = $userId;
         
@@ -181,6 +203,7 @@ require_once 'includes/header.php';
                     </label>
                     <input type="password" name="password" required 
                            placeholder="<?= $language == 'en' ? 'Enter password' : 'Şifre girin' ?>"
+                           autocomplete="new-password"
                            class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 rounded-md shadow-sm 
                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400
                            dark:text-white placeholder-gray-400 dark:placeholder-gray-400">
@@ -191,6 +214,7 @@ require_once 'includes/header.php';
                     </label>
                     <input type="password" name="password_confirm" required 
                            placeholder="<?= $language == 'en' ? 'Confirm password' : 'Şifreyi tekrar girin' ?>"
+                           autocomplete="new-password"
                            class="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 rounded-md shadow-sm 
                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400
                            dark:text-white placeholder-gray-400 dark:placeholder-gray-400">

@@ -79,7 +79,7 @@ try {
 
         <!-- Yeni Mesaj Butonu -->
         <div class="mb-6">
-            <?php if ($currentUser['is_approved']): ?>
+            <?php if ($currentUser['is_approved'] && (isAdmin() || isPremium())): ?>
             <button onclick="showNewMessageModal()" 
                     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors">
                 <i class="fas fa-paper-plane mr-2"></i>Yeni Mesaj
@@ -92,7 +92,11 @@ try {
                 </button>
                 <span class="text-sm text-yellow-600 dark:text-yellow-400">
                     <i class="fas fa-exclamation-triangle mr-1"></i>
-                    <?= $language == 'en' ? 'Your account needs to be approved to send messages' : 'Mesaj gönderebilmek için hesabınızın onaylanması gerekiyor' ?>
+                    <?php if (!$currentUser['is_approved']): ?>
+                        <?= $language == 'en' ? 'Your account needs to be approved to send messages' : 'Mesaj gönderebilmek için hesabınızın onaylanması gerekiyor' ?>
+                    <?php else: ?>
+                        <?= $language == 'en' ? 'Only premium members and administrators can send messages.' : 'Sadece premium üyeler ve yöneticiler mesaj gönderebilir.' ?>
+                    <?php endif; ?>
                 </span>
             </div>
             <?php endif; ?>
@@ -270,6 +274,9 @@ try {
 function showNewMessageModal() {
     <?php if (!$currentUser['is_approved']): ?>
     alert('<?= $language == 'en' ? 'Your account needs to be approved before you can send messages.' : 'Mesaj gönderebilmek için hesabınızın onaylanması gerekiyor.' ?>');
+    return;
+    <?php elseif (!isAdmin() && !isPremium()): ?>
+    alert('<?= $language == 'en' ? 'Only premium members and administrators can send messages.' : 'Sadece premium üyeler ve yöneticiler mesaj gönderebilir.' ?>');
     return;
     <?php endif; ?>
     

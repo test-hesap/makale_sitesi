@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $site_title = $_POST['site_title'] ?? '';
         $site_description = $_POST['site_description'] ?? '';
         $site_logo = $_POST['site_logo'] ?? '';
+        $site_logo_dark = $_POST['site_logo_dark'] ?? '';
         
         // Favicon kaldırma işlemi
         if (isset($_POST['remove_favicon']) && $_POST['remove_favicon'] == 1) {
@@ -53,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         updateSetting('site_title', $site_title);
         updateSetting('site_description', $site_description);
         updateSetting('site_logo', $site_logo);
+        updateSetting('site_logo_dark', $site_logo_dark);
 
         $success_message = "Genel ayarlar başarıyla güncellendi.";
     }
@@ -162,6 +164,18 @@ if (!empty($success)):
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Site Logosu</label>
                         <input type="text" name="site_logo" value="<?php echo htmlspecialchars(getSiteSetting('site_logo')); ?>" 
                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            <i class="fas fa-moon mr-2 text-purple-500"></i>Karanlık Tema Logosu
+                        </label>
+                        <input type="text" name="site_logo_dark" value="<?php echo htmlspecialchars(getSiteSetting('site_logo_dark')); ?>" 
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                            Karanlık tema etkinken görüntülenecek logo. Boş bırakırsanız normal logo kullanılacaktır.
+                        </p>
                     </div>
                 </div>
                 <div>

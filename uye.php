@@ -250,7 +250,7 @@ try {
                             $isApproved = $currentUser['is_approved'];
                         ?>
                         <div class="mt-4 md:mt-0">
-                            <?php if ($isApproved): ?>
+                            <?php if ($isApproved && (isAdmin() || isPremium())): ?>
                             <button onclick="showMessageModal('<?= htmlspecialchars($user['username']) ?>')" 
                                     class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
                                 <i class="far fa-envelope mr-2"></i>
@@ -259,7 +259,13 @@ try {
                             <?php else: ?>
                             <button disabled 
                                     class="inline-flex items-center px-4 py-2 bg-gray-400 cursor-not-allowed text-white rounded-lg" 
-                                    title="<?= $language == 'en' ? 'Your account needs to be approved to send messages' : 'Mesaj gönderebilmek için hesabınızın onaylanması gerekiyor' ?>">
+                                    title="<?php 
+                                    if (!$isApproved) {
+                                        echo $language == 'en' ? 'Your account needs to be approved to send messages' : 'Mesaj gönderebilmek için hesabınızın onaylanması gerekiyor';
+                                    } else {
+                                        echo $language == 'en' ? 'Only premium members and administrators can send messages' : 'Sadece premium üyeler ve yöneticiler mesaj gönderebilir';
+                                    }
+                                    ?>">
                                 <i class="far fa-envelope mr-2"></i>
                                 <?= $language == 'en' ? 'Send Message' : 'Mesaj Gönder' ?>
                             </button>
@@ -400,6 +406,10 @@ try {
 
         <script>
         function showMessageModal(username) {
+            <?php if (!isAdmin() && !isPremium()): ?>
+                alert('<?= $language == 'en' ? 'Only premium members and administrators can send messages.' : 'Sadece premium üyeler ve yöneticiler mesaj gönderebilir.' ?>');
+                return;
+            <?php endif; ?>
             document.getElementById('recipient').value = username;
             document.getElementById('messageModal').classList.remove('hidden');
             document.getElementById('messageModal').classList.add('flex');

@@ -102,7 +102,7 @@ try {
         </div>
 
         <!-- Yanıt Formu -->
-        <?php if ($message['receiver_id'] == $currentUser['id']): ?>
+        <?php if ($message['receiver_id'] == $currentUser['id'] && (isAdmin() || isPremium())): ?>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
             <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4"><?= $language == 'en' ? 'Reply' : 'Yanıtla' ?></h2>
             <form action="/api/send-message.php" method="POST" class="space-y-4">

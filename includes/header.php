@@ -10,10 +10,34 @@ if (!defined('MAINTENANCE_CHECKED')) {
     define('MAINTENANCE_CHECKED', true);
 }
 
-$db = new Database();
-$settings = getSettings();
-$currentTheme = getCurrentTheme();
-$currentUser = getCurrentUser();
+try {
+    $db = new Database();
+    $settings = getSettings();
+    $currentTheme = getCurrentTheme();
+    $currentUser = getCurrentUser(); 
+} catch (Exception $e) {
+    error_log("Header hatası: " . $e->getMessage());
+    
+    // Banlı kullanıcı kontrolü
+    if (isset($_SESSION['user_id'])) {
+        $userId = $_SESSION['user_id'];
+        require_once __DIR__ . '/ban_functions.php';
+        
+        if (isUserBanned($userId)) {
+            header('Location: /banned.php');
+            exit;
+        }
+    }
+    
+    // Diğer hatalar için oturumu sonlandır ve ana sayfaya yönlendir
+    if (function_exists('logout')) {
+        logout('/');
+    } else {
+        session_destroy();
+        header('Location: /');
+        exit;
+    }
+}
 
 // Sayfa görüntülenme takibi
 $currentPage = $_SERVER['REQUEST_URI'];
@@ -209,7 +233,11 @@ updateOnlineUsers();
                 <div class="flex items-center space-x-4">
                     <a href="/" class="flex items-center space-x-2">
                         <?php if (!empty($settings['site_logo'])): ?>
-                        <img src="<?= $settings['site_logo'] ?>" alt="<?= $settings['site_title'] ?>" class="h-8 w-auto">
+                            <?php if (!empty($settings['site_logo_dark']) && $currentTheme === 'dark'): ?>
+                                <img src="<?= getSiteUrl($settings['site_logo_dark']) ?>" alt="<?= $settings['site_title'] ?>" class="h-8 w-auto header-logo">
+                            <?php else: ?>
+                                <img src="<?= getSiteUrl($settings['site_logo']) ?>" alt="<?= $settings['site_title'] ?>" class="h-8 w-auto header-logo">
+                            <?php endif; ?>
                         <?php else: ?>
                         <span class="text-xl font-bold text-primary-600 dark:text-primary-400"><?= $settings['site_title'] ?></span>
                         <?php endif; ?>
@@ -272,23 +300,23 @@ updateOnlineUsers();
                         <i class="fas fa-moon hidden dark:inline"></i>
                     </button>
                     
-                    <!-- Language Toggle -->
+                    <!-- Language Toggle - Tarayıcı uyumluluğu için güncellendi -->
                     <div class="relative language-dropdown">
-                        <button id="language-toggle-btn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <button id="language-toggle-btn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Dil Seçimi">
                             <i class="fas fa-globe"></i>
                             <?php $currentLang = getCurrentLanguage(); ?>
                             <?= $currentLang === 'tr' ? 'TR' : 'EN' ?>
                         </button>
-                        <div id="language-dropdown-menu" class="absolute top-full right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden transition-all duration-300">
+                        <div id="language-dropdown-menu" class="absolute top-full right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden transition-all duration-300 z-50">
                             <a href="#" onclick="setLanguage('tr'); return false;" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors <?= $currentLang === 'tr' ? 'font-bold text-primary-600' : '' ?>">Türkçe</a>
                             <a href="#" onclick="setLanguage('en'); return false;" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors <?= $currentLang === 'en' ? 'font-bold text-primary-600' : '' ?>">English</a>
                         </div>
                     </div>
                     
                     <?php if (isLoggedIn()): ?>
-                    <!-- User Dropdown -->
-                    <div class="relative group">
-                        <button class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <!-- User Dropdown - Hem touch hem hover desteği için güncellendi -->
+                    <div class="relative user-dropdown">
+                        <button id="user-menu-btn" class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                             <?php 
                             // Profil resmi görüntüleme - aynı profil.php'deki gibi
                             $profileImageUrl = '';
@@ -318,7 +346,7 @@ updateOnlineUsers();
                             <span class="hidden sm:inline"><?= $currentUser['username'] ?></span>
                             <i class="fas fa-chevron-down text-xs"></i>
                         </button>
-                        <div class="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                        <div id="user-menu-dropdown" class="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden transition-all duration-300">
                             <a href="/profil" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                                 <i class="fas fa-user mr-2"></i> <?= t('profile') ?>
                             </a>
@@ -460,17 +488,65 @@ updateOnlineUsers();
             if (languageToggleBtn) {
                 languageToggleBtn.addEventListener('click', function(e) {
                     e.preventDefault();
+                    
+                    // Kullanıcı menüsü açıksa kapat
+                    if (userMenuDropdown && !userMenuDropdown.classList.contains('hidden')) {
+                        userMenuDropdown.classList.add('hidden');
+                        userMenuDropdown.classList.remove('menu-open');
+                    }
+                    
+                    // Dil menüsünü toggle
                     languageDropdownMenu.classList.toggle('hidden');
+                    languageDropdownMenu.classList.toggle('menu-open');
                     e.stopPropagation();
                 });
                 
-                // Sayfa herhangi bir yerine tıklandığında açık menüyü kapat
-                document.addEventListener('click', function(e) {
-                    if (!languageToggleBtn.contains(e.target)) {
+                // Kullanıcı menüsü tıklama kontrolü - tüm cihazlar için
+                const userMenuBtn = document.getElementById('user-menu-btn');
+                const userMenuDropdown = document.getElementById('user-menu-dropdown');
+                
+                if (userMenuBtn && userMenuDropdown) {
+                    userMenuBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Eğer dil menüsü açıksa kapat
+                        if (languageDropdownMenu && !languageDropdownMenu.classList.contains('hidden')) {
+                            languageDropdownMenu.classList.add('hidden');
+                        }
+                        
+                        // Kullanıcı menüsünü toggle
+                        userMenuDropdown.classList.toggle('hidden');
+                        userMenuDropdown.classList.toggle('menu-open');
+                        e.stopPropagation();
+                    });
+                }
+                
+                // Sayfa herhangi bir yerine tıklandığında açık menüleri kapat (hem tıklama hem dokunmatik için)
+                function closeMenusOnOutsideClick(e) {
+                    if (languageToggleBtn && languageDropdownMenu && !languageToggleBtn.contains(e.target) && !languageDropdownMenu.contains(e.target)) {
                         languageDropdownMenu.classList.add('hidden');
+                        languageDropdownMenu.classList.remove('menu-open');
                     }
-                });
+                    
+                    if (userMenuBtn && userMenuDropdown && !userMenuBtn.contains(e.target) && !userMenuDropdown.contains(e.target)) {
+                        userMenuDropdown.classList.add('hidden');
+                        userMenuDropdown.classList.remove('menu-open');
+                    }
+                }
+                
+                document.addEventListener('click', closeMenusOnOutsideClick);
+                document.addEventListener('touchend', closeMenusOnOutsideClick);
             }
+            
+            // Hover davranışını kaldırıyoruz, tamamıyla tıklama kontrolüne geçiyoruz
+            document.head.insertAdjacentHTML('beforeend', `
+                <style>
+                    /* Tüm cihazlarda sadece tıklama ile açılsın */
+                    .menu-open {
+                        display: block !important;
+                    }
+                </style>
+            `);
         });
         
         // Theme toggle
@@ -486,6 +562,7 @@ updateOnlineUsers();
                 document.documentElement.classList.remove('light', 'dark');
                 document.documentElement.classList.add(currentTheme);
                 updateThemeIcons(currentTheme);
+                updateSiteLogo(currentTheme);
             });
         }
         
@@ -503,6 +580,21 @@ updateOnlineUsers();
             }
         }
         
+        function updateSiteLogo(theme) {
+            const siteLogo = document.querySelector('.header-logo');
+            if (!siteLogo) return;
+            
+            // PHP'den değerleri al
+            const lightLogoUrl = "<?= !empty($settings['site_logo']) ? getSiteUrl($settings['site_logo']) : '' ?>";
+            const darkLogoUrl = "<?= !empty($settings['site_logo_dark']) ? getSiteUrl($settings['site_logo_dark']) : '' ?>";
+            const siteTitle = "<?= $settings['site_title'] ?>";
+            
+            // Eğer karanlık tema logosu varsa, tema değişimine göre logoyu güncelle
+            if (darkLogoUrl) {
+                siteLogo.src = (theme === 'dark') ? darkLogoUrl : lightLogoUrl;
+            }
+        }
+        
         // Language toggle
         function setLanguage(lang) {
             fetch('/api/set-language.php', {
@@ -516,10 +608,24 @@ updateOnlineUsers();
             });
         }
         
-        // Mobile menu toggle
+        // Mobile menu toggle - geliştirilmiş sürüm
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const hamburger = document.querySelector('.hamburger');
+            
+            // Diğer açık menüleri kapat
+            const userMenuDropdown = document.getElementById('user-menu-dropdown');
+            const languageDropdownMenu = document.getElementById('language-dropdown-menu');
+            
+            if (userMenuDropdown) {
+                userMenuDropdown.classList.add('hidden');
+                userMenuDropdown.classList.remove('menu-open');
+            }
+            
+            if (languageDropdownMenu) {
+                languageDropdownMenu.classList.add('hidden');
+                languageDropdownMenu.classList.remove('menu-open');
+            }
             
             menu.classList.toggle('hidden');
             hamburger.classList.toggle('open');

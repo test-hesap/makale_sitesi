@@ -58,6 +58,17 @@ if (!$currentUser['is_approved']) {
     exit;
 }
 
+// Kullanıcının admin veya premium üye olup olmadığını kontrol et
+if (!isAdmin() && !isPremium()) {
+    $language = getCurrentLanguage();
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => false,
+        'error' => $language == 'en' ? 'Only premium members and administrators can send messages.' : 'Sadece premium üyeler ve yöneticiler mesaj gönderebilir.'
+    ]);
+    exit;
+}
+
 try {
     $database = new Database();
     $db = $database->pdo;
