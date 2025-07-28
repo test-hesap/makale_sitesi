@@ -303,7 +303,7 @@ $current_page = $_GET['page'] ?? 'dashboard';
                         <?php 
                             $bannedCount = 0;
                             try {
-                                $banQuery = "SELECT COUNT(*) FROM banned_users WHERE is_active = 1";
+                                $banQuery = "SELECT COUNT(*) FROM banned_users WHERE is_active = 1 AND (expiry_date IS NULL OR expiry_date > NOW())";
                                 $banStmt = $db->prepare($banQuery);
                                 $banStmt->execute();
                                 $bannedCount = $banStmt->fetchColumn();
@@ -311,7 +311,7 @@ $current_page = $_GET['page'] ?? 'dashboard';
                             
                             if ($bannedCount > 0):
                         ?>
-                        <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full"><?php echo $bannedCount; ?></span>
+                        <!-- Uyarı simgesi kaldırıldı -->
                         <?php endif; ?>
                     </a>
                     <a href="?page=messages" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'messages' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">

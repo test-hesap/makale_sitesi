@@ -31,9 +31,16 @@ try {
                 $duration = $_POST['duration'] ?? null;
                 $expiryDate = null;
                 
-                // Süresiz ban veya belirli süreli ban
+                // Süresiz ban veya belirli tarihli ban
                 if ($duration !== 'permanent') {
-                    $expiryDate = date('Y-m-d H:i:s', strtotime('+' . $duration));
+                    // Yeni formatta date-time değerini işle
+                    if (strpos($duration, ' ') !== false) {
+                        // Format: "2025-07-28 14:30" -> Doğrudan datetime olarak kullan
+                        $expiryDate = date('Y-m-d H:i:s', strtotime($duration));
+                    } else {
+                        // Eski format (geriye dönük uyumluluk için)
+                        $expiryDate = date('Y-m-d H:i:s', strtotime('+' . $duration));
+                    }
                 }
                 
                 // Mevcut kullanıcının kendisini banlamasını engelle
@@ -294,18 +301,32 @@ try {
             </div>
             
             <div class="mb-4">
-                <label for="duration" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ban Süresi:</label>
-                <select name="duration" id="duration" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option value="1 day">1 Gün</option>
-                    <option value="3 days">3 Gün</option>
-                    <option value="7 days">1 Hafta</option>
-                    <option value="14 days">2 Hafta</option>
-                    <option value="30 days">1 Ay</option>
-                    <option value="90 days">3 Ay</option>
-                    <option value="180 days">6 Ay</option>
-                    <option value="365 days">1 Yıl</option>
-                    <option value="permanent">Süresiz</option>
-                </select>
+                <label for="duration_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ban Süresi:</label>
+                
+                <div class="grid grid-cols-1 gap-3">
+                    <!-- Süresiz Ban Seçeneği -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="permanent_ban" name="permanent_ban" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-blue-400 h-5 w-5">
+                        <label for="permanent_ban" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">Süresiz Ban</label>
+                    </div>
+                    
+                    <!-- Tarih ve Saat Seçici -->
+                    <div id="duration_datetime_container">
+                        <label for="duration_date" class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Ban Bitiş Zamanı:</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="date" id="duration_date" name="duration_date" 
+                                class="px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm w-full"
+                                min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>">
+                            <input type="time" id="duration_time" name="duration_time" 
+                                class="px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm w-full"
+                                value="<?php echo date('H:i'); ?>">
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Ban işlemi belirtilen zamana kadar sürecektir.</p>
+                    </div>
+                </div>
+                
+                <!-- Gizli input - JavaScript ile doldurulacak -->
+                <input type="hidden" name="duration" id="duration" value="">
             </div>
             
             <div class="flex justify-end gap-2 mt-6">
@@ -330,7 +351,10 @@ function openBanModal(userId, username) {
 function closeBanModal() {
     document.getElementById('banUserModal').classList.add('hidden');
     document.getElementById('reason').value = '';
-    document.getElementById('duration').value = '1 day';
+    document.getElementById('permanent_ban').checked = false;
+    document.getElementById('duration_date').value = '';
+    document.getElementById('duration_time').value = '';
+    toggleDurationFields(false);
 }
 
 // ESC tuşu ile modal'ı kapatma
@@ -347,14 +371,165 @@ document.getElementById('banUserModal').addEventListener('click', function(event
     }
 });
 
+// Ban süresi alanları arasındaki geçişleri yönet
+function toggleDurationFields(isPermanent) {
+    const durationDatetimeContainer = document.getElementById('duration_datetime_container');
+    
+    if (isPermanent) {
+        durationDatetimeContainer.classList.add('opacity-50', 'pointer-events-none');
+        document.getElementById('duration').value = 'permanent';
+    } else {
+        durationDatetimeContainer.classList.remove('opacity-50', 'pointer-events-none');
+        updateDurationValue();
+    }
+}
+
+// Seçilen tarih ve saat değerlerini hidden input'a aktar
+function updateDurationValue() {
+    const dateInput = document.getElementById('duration_date');
+    const timeInput = document.getElementById('duration_time');
+    const permanentCheckbox = document.getElementById('permanent_ban');
+    
+    if (permanentCheckbox.checked) {
+        document.getElementById('duration').value = 'permanent';
+        return;
+    }
+    
+    // Eğer tarih veya saat boşsa, değeri güncelleme
+    if (!dateInput.value || !timeInput.value) {
+        return;
+    }
+    
+    // Manuel girilen zaman formatını kontrol et ve düzelt
+    let timeValue = timeInput.value;
+    // Eğer : içermiyorsa ve 4 haneli ise (örn: 2230), otomatik olarak format ekleyelim
+    if (!timeValue.includes(':') && timeValue.length === 4) {
+        timeValue = timeValue.substring(0, 2) + ':' + timeValue.substring(2);
+        timeInput.value = timeValue;
+    }
+    
+    // Tarih ve saati birleştirerek ISO formatında sunucuya gönder
+    // Girilen değerin geçerli bir tarih-saat olup olmadığını kontrol et
+    try {
+        const selectedDate = new Date(`${dateInput.value}T${timeValue}`);
+        const now = new Date();
+        
+        // Eğer geçersiz bir tarih ise (Invalid Date)
+        if (isNaN(selectedDate.getTime())) {
+            // Şu anki saatten 1 saat sonrasını ayarla
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            const nextHour = (currentHour + 1) % 24;
+            timeInput.value = nextHour.toString().padStart(2, '0') + ':' + currentMinute.toString().padStart(2, '0');
+            return;
+        }
+        
+        // Bugünün tarihi seçilmişse sadece saati kontrol et, farklı bir gün seçilmişse direkt kabul et
+        const todayStr = now.toISOString().split('T')[0];
+        const isSameDay = dateInput.value === todayStr;
+        
+        // Sadece aynı gün seçildiyse ve saat geçmiş ise, uyarı vermeden düzelt
+        if (isSameDay && selectedDate < now) {
+            // Şu anki saati ekleyelim
+            const currentHour = now.getHours().toString().padStart(2, '0');
+            const currentMinute = now.getMinutes().toString().padStart(2, '0');
+            
+            // Varsayılan olarak şu anki saati ayarla
+            timeInput.value = `${currentHour}:${currentMinute}`;
+            return;
+        }
+    } catch(e) {
+        console.error("Tarih-saat değeri işlenirken hata: ", e);
+        return;
+    }
+    
+    // Farklı formata çevirip duration alanına yazalım
+    document.getElementById('duration').value = `${dateInput.value} ${timeInput.value}`;
+}
+
 // Başarılı ban işleminden sonra sayfayı yenile
 document.getElementById('banUserForm').addEventListener('submit', function(event) {
+    // Eğer süresiz değilse ve tarih/saat seçilmemişse
+    const permanentBan = document.getElementById('permanent_ban');
+    const dateInput = document.getElementById('duration_date');
+    const timeInput = document.getElementById('duration_time');
+    
+    if (!permanentBan.checked && (!dateInput.value || !timeInput.value)) {
+        event.preventDefault();
+        alert('Lütfen bir ban bitiş tarihi ve saati seçin veya süresiz ban işaretleyin.');
+        return;
+    }
+    
+    // Form gönderilmeden önce bir kez daha manuel kontrol için
+    if (!permanentBan.checked) {
+        try {
+            // Zaman formatını kontrol et
+            let timeValue = timeInput.value;
+            if (!timeValue.includes(':') && timeValue.length === 4) {
+                timeValue = timeValue.substring(0, 2) + ':' + timeValue.substring(2);
+                timeInput.value = timeValue;
+            }
+            
+            const selectedDate = new Date(`${dateInput.value}T${timeInput.value}`);
+            const now = new Date();
+            
+            // Bugünün tarihi seçilmişse ve saat geçmişte kaldıysa otomatik düzelt
+            if (dateInput.value === now.toISOString().split('T')[0] && selectedDate < now) {
+                const currentHour = now.getHours().toString().padStart(2, '0');
+                const currentMinute = now.getMinutes().toString().padStart(2, '0');
+                timeInput.value = `${currentHour}:${currentMinute}`;
+                updateDurationValue();
+                return;
+            }
+        } catch(e) {
+            event.preventDefault();
+            alert('Geçersiz tarih veya saat formatı. Lütfen kontrol ediniz.');
+            return;
+        }
+    }
+    
+    // Form gönderilmeden önce duration değerini güncelle
+    updateDurationValue();
+    
     // Form normal şekilde submit edilsin, başarılı olunca sayfayı yenileyecek
     localStorage.setItem('banSuccess', 'true');
 });
 
 // Sayfaya ilk girişte kullanıcı tablosunu düzenle
 document.addEventListener('DOMContentLoaded', function() {
+    // Ban süresi seçim alanlarını ayarla
+    const permanentBanCheckbox = document.getElementById('permanent_ban');
+    const dateInput = document.getElementById('duration_date');
+    const timeInput = document.getElementById('duration_time');
+    
+    // Bugünün tarihini varsayılan olarak ayarla
+    const today = new Date();
+    
+    // Şu anki tarih ve saat ayarları
+    dateInput.value = today.toISOString().split('T')[0];
+    
+    // Şu anki saati varsayılan olarak ayarla
+    const hours = today.getHours();
+    const minutes = today.getMinutes();
+    
+    timeInput.value = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+    
+    // Süresiz ban seçeneği değiştiğinde
+    permanentBanCheckbox.addEventListener('change', function() {
+        toggleDurationFields(this.checked);
+    });
+    
+    // Tarih veya saat değiştiğinde (hem change hem input olayları için)
+    dateInput.addEventListener('change', updateDurationValue);
+    dateInput.addEventListener('input', updateDurationValue);
+    
+    timeInput.addEventListener('change', updateDurationValue);
+    timeInput.addEventListener('input', updateDurationValue);
+    timeInput.addEventListener('blur', updateDurationValue); // Odak kaybedildiğinde
+    
+    // İlk yüklemede duration değerini ayarla
+    updateDurationValue();
+    
     // Kullanıcı dropdown işlevselliği
     const userSelect = document.getElementById('userSelect');
     const selectedUserInfo = document.getElementById('selectedUserInfo');

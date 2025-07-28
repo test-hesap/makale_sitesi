@@ -316,6 +316,14 @@ try {
     // Where koşulları oluştur
     $whereConditions = [];
     $params = [];
+    
+    // Banlı kullanıcıları gösterme (varsayılan olarak)
+    $filter_banned = $_GET['filter_banned'] ?? 'hide';
+    if ($filter_banned === 'hide') {
+        $whereConditions[] = "NOT EXISTS (SELECT 1 FROM banned_users b WHERE b.user_id = u.id AND b.is_active = 1 AND (b.expiry_date IS NULL OR b.expiry_date > NOW()))";
+    } elseif ($filter_banned === 'only') {
+        $whereConditions[] = "EXISTS (SELECT 1 FROM banned_users b WHERE b.user_id = u.id AND b.is_active = 1 AND (b.expiry_date IS NULL OR b.expiry_date > NOW()))";
+    }
 
     if ($filter === 'approved') {
         $whereConditions[] = "u.is_approved = 1";
@@ -398,6 +406,7 @@ try {
         <form method="GET" class="flex space-x-2">
             <input type="hidden" name="page" value="users">
             <input type="hidden" name="filter" value="<?php echo htmlspecialchars($filter); ?>">
+            <input type="hidden" name="filter_banned" value="<?php echo htmlspecialchars($filter_banned); ?>">
             <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" 
                    placeholder="Kullanıcı ara..." 
                    class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
@@ -489,6 +498,31 @@ try {
         <a href="?page=users&filter=admin&search=<?php echo urlencode($search); ?>" 
            class="px-3 py-2 rounded-lg text-sm font-medium transition-colors <?php echo $filter === 'admin' ? 'bg-purple-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'; ?>">
             Admin (<?php echo $stats['admin']; ?>)
+        </a>
+        
+        <!-- Banlı Kullanıcı Filtresi -->
+        <?php
+        // Varsayılan olarak banlı kullanıcıları gizle
+        $filter_banned = $_GET['filter_banned'] ?? 'hide';
+        
+        // Banlı kullanıcı sayısını öğren
+        $bannedStmt = $db->query("SELECT COUNT(DISTINCT user_id) as banned_count FROM banned_users WHERE is_active = 1 AND (expiry_date IS NULL OR expiry_date > NOW())");
+        $bannedCount = $bannedStmt->fetch()['banned_count'] ?? 0;
+        ?>
+        
+        <a href="?page=users&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>&filter_banned=show" 
+           class="px-3 py-2 rounded-lg text-sm font-medium transition-colors <?php echo $filter_banned === 'show' ? 'bg-gray-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'; ?>">
+            Banlıları Göster
+        </a>
+        
+        <a href="?page=users&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>&filter_banned=only" 
+           class="px-3 py-2 rounded-lg text-sm font-medium transition-colors <?php echo $filter_banned === 'only' ? 'bg-orange-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'; ?>">
+            Sadece Banlılar (<?php echo $bannedCount; ?>)
+        </a>
+        
+        <a href="?page=users&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>&filter_banned=hide" 
+           class="px-3 py-2 rounded-lg text-sm font-medium transition-colors <?php echo $filter_banned === 'hide' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'; ?>">
+            Banlıları Gizle
         </a>
     </div>
 </div>
@@ -690,7 +724,7 @@ try {
     
     <nav class="flex items-center space-x-1">
         <?php if ($page > 1): ?>
-            <a href="?page=users&p=<?php echo $page - 1; ?>&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>" 
+            <a href="?page=users&p=<?php echo $page - 1; ?>&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>&filter_banned=<?php echo urlencode($filter_banned); ?>" 
                class="px-3 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                 <i class="fas fa-chevron-left"></i> Önceki
             </a>
@@ -703,7 +737,7 @@ try {
         
         // İlk sayfa
         if ($startPage > 1): ?>
-            <a href="?page=users&p=1&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>" 
+            <a href="?page=users&p=1&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>&filter_banned=<?php echo urlencode($filter_banned); ?>" 
                class="px-3 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                 1
             </a>
@@ -713,7 +747,7 @@ try {
         <?php endif; ?>
         
         <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
-            <a href="?page=users&p=<?php echo $i; ?>&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>" 
+            <a href="?page=users&p=<?php echo $i; ?>&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>&filter_banned=<?php echo urlencode($filter_banned); ?>" 
                class="px-3 py-2 rounded-lg text-sm font-medium transition-colors
                       <?php echo $i === $page ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'; ?>">
                 <?php echo $i; ?>
@@ -726,14 +760,14 @@ try {
             <?php if ($endPage < $totalPages - 1): ?>
                 <span class="px-2 text-gray-400">...</span>
             <?php endif; ?>
-            <a href="?page=users&p=<?php echo $totalPages; ?>&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>" 
+            <a href="?page=users&p=<?php echo $totalPages; ?>&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>&filter_banned=<?php echo urlencode($filter_banned); ?>" 
                class="px-3 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                 <?php echo $totalPages; ?>
             </a>
         <?php endif; ?>
         
         <?php if ($page < $totalPages): ?>
-            <a href="?page=users&p=<?php echo $page + 1; ?>&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>" 
+            <a href="?page=users&p=<?php echo $page + 1; ?>&filter=<?php echo urlencode($filter); ?>&search=<?php echo urlencode($search); ?>&filter_banned=<?php echo urlencode($filter_banned); ?>" 
                class="px-3 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                 Sonraki <i class="fas fa-chevron-right"></i>
             </a>

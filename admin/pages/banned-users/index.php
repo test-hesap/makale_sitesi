@@ -109,7 +109,7 @@ $activeTab = isset($_GET['tab']) ? $_GET['tab'] : 'users';
                                      FROM banned_users b
                                      LEFT JOIN users u ON b.user_id = u.id
                                      LEFT JOIN users a ON b.banned_by = a.id
-                                     WHERE b.is_active = 1
+                                     WHERE b.is_active = 1 AND (b.expiry_date IS NULL OR b.expiry_date > NOW())
                                      ORDER BY b.ban_date DESC";
                             
                             $stmt = $db->prepare($query);

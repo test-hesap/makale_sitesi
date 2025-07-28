@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 27 Tem 2025, 12:22:30
+-- Üretim Zamanı: 28 Tem 2025, 20:42:23
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -88,15 +88,6 @@ CREATE TABLE `ai_articles` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Tablo döküm verisi `ai_articles`
---
-
-INSERT INTO `ai_articles` (`id`, `article_id`, `ai_type`, `prompt`, `word_count`, `processing_time`, `cover_image_url`, `image1_url`, `image2_url`, `created_at`) VALUES
-(5, 51, 'gemini', 'Kategori: \"Sağlık\" için bir makale yaz. Yaklaşık 500 kelime uzunluğunda olsun. SEO uyumlu, bilgilendirici ve ilgi çekici bir başlık ve içerik oluştur. Türkçe dil bilgisi kurallarına uygun, akıcı ve anlaşılır bir dil kullan. İçeriği HTML formatında döndür, başlık için <h1> etiketi kullan, alt başlıklar için <h2> ve <h3> kullan. Makalenin sonunda okuyucuyu harekete geçiren bir çağrı ifadesi ekle.', 500, 6.32471, 'https://images.unsplash.com/photo-1592580715317-19adca36288e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwyfHxTYSVDNCU5RmwlQzQlQjFrbCVDNCVCMSUyMFlhJUM1JTlGYW0lMjAlQzQlQjAlQzMlQTdpbiUyMFByYXRpayUyMCVDNCVCMHB1JUMzJUE3bGFyJUM0JUIxJ', 'https://images.unsplash.com/photo-1605606437828-598340dfaeb7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwxfHxTYSVDNCU5RmwlQzQlQjFrbCVDNCVCMSUyMFlhJUM1JTlGYW0lMjAlQzQlQjAlQzMlQTdpbiUyMFByYXRpayUyMCVDNCVCMHB1JUMzJUE3bGFyJUM0JUIxJ', 'https://images.unsplash.com/photo-1592580715317-19adca36288e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwyfHxTYSVDNCU5RmwlQzQlQjFrbCVDNCVCMSUyMFlhJUM1JTlGYW0lMjAlQzQlQjAlQzMlQTdpbiUyMFByYXRpayUyMCVDNCVCMHB1JUMzJUE3bGFyJUM0JUIxJ', '2025-07-26 21:37:19'),
-(6, 52, 'gemini', 'Kategori: \"Gezi Rehberi\" için bir makale yaz. Yaklaşık 500 kelime uzunluğunda olsun. SEO uyumlu, bilgilendirici ve ilgi çekici bir başlık ve içerik oluştur. Türkçe dil bilgisi kurallarına uygun, akıcı ve anlaşılır bir dil kullan. İçeriği HTML formatında döndür, başlık için <h1> etiketi kullan, alt başlıklar için <h2> ve <h3> kullan. Makalenin sonunda okuyucuyu harekete geçiren bir çağrı ifadesi ekle.', 500, 6.52271, 'https://images.unsplash.com/photo-1719163893241-b36167f81a31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwzfHxVbnV0dWxtYXolMjBCaXIlMjBHZXppJTIwJUM0JUIwJUMzJUE3aW4lMjBUYW0lMjBLYXBzYW1sJUM0JUIxJTIwR2V6aSUyMFJlaGJlcml8ZW58MXwwfHx8M', 'https://images.unsplash.com/photo-1692895591954-451050db22fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwxfHxVbnV0dWxtYXolMjBCaXIlMjBHZXppJTIwJUM0JUIwJUMzJUE3aW4lMjBUYW0lMjBLYXBzYW1sJUM0JUIxJTIwR2V6aSUyMFJlaGJlcml8ZW58MXwwfHx8M', 'https://images.unsplash.com/photo-1570714436355-2556087f0912?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwyfHxVbnV0dWxtYXolMjBCaXIlMjBHZXppJTIwJUM0JUIwJUMzJUE3aW4lMjBUYW0lMjBLYXBzYW1sJUM0JUIxJTIwR2V6aSUyMFJlaGJlcml8ZW58MXwwfHx8M', '2025-07-26 21:38:17'),
-(7, 53, 'gemini', 'Kategori: \"Gezi Rehberi\" için tamamen özgün ve benzersiz bir makale yaz. Makale başlığı kesinlikle daha önce hiç kullanılmamış, çarpıcı ve dikkat çekici olmalı. Başlık oluştururken şu teknikleri kullan: sorular sor, rakamlar kullan, güçlü sıfatlar ekle, merak uyandır ve duygusal tepki yaratacak ifadeler kullan. Başlıklarda klişelerden kaçın. Yaklaşık 500 kelime uzunluğunda olsun. SEO uyumlu, bilgilendirici ve ilgi çekici benzersiz bir başlık oluştur. Başlıkta beklenmedik kelime kombinasyonları, orijinal fikirler ve çarpıcı ifadeler kullan. Farklı başlık yapıları dene: \'Nasıl...\', \'X Adımda...\', \'... Hakkında Bilmeniz Gereken X Şey\', \'...nın Sırları\' gibi kalıplar yerine daha yaratıcı ifadeler kullan. Türkçe dil bilgisi kurallarına uygun, akıcı ve anlaşılır bir dil kullan. İçeriği HTML formatında döndür, başlık için <h1> etiketi kullan, alt başlıklar için <h2> ve <h3> kullan. Makalenin sonunda okuyucuyu harekete geçiren bir çağrı ifadesi ekle. Önemli: Her üretim tamamen benzersiz olmalıdır. Benzersiz Kimlik: 1b27ea02, Rastgele Faktör: 6212, Tarih: 1753566536.', 500, 7.09757, 'https://images.unsplash.com/photo-1690061522034-5fe90656d29b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwxfHxLYXklQzQlQjFwJTIwJUM1JTlFZWhpcmxlcmluJTIwRiVDNCVCMXMlQzQlQjFsdCVDNCVCMXMlQzQlQjElM0ElMjA3JTIwR2l6bGklMjBDZW5uZXQlMkMlM', 'https://images.unsplash.com/photo-1690061522034-5fe90656d29b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwxfHxLYXklQzQlQjFwJTIwJUM1JTlFZWhpcmxlcmluJTIwRiVDNCVCMXMlQzQlQjFsdCVDNCVCMXMlQzQlQjElM0ElMjA3JTIwR2l6bGklMjBDZW5uZXQlMkMlM', 'https://images.unsplash.com/photo-1717539780863-75b1635259cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwyfHxLYXklQzQlQjFwJTIwJUM1JTlFZWhpcmxlcmluJTIwRiVDNCVCMXMlQzQlQjFsdCVDNCVCMXMlQzQlQjElM0ElMjA3JTIwR2l6bGklMjBDZW5uZXQlMkMlM', '2025-07-26 21:49:33');
-
 -- --------------------------------------------------------
 
 --
@@ -126,19 +117,6 @@ CREATE TABLE `articles` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `articles`
---
-
-INSERT INTO `articles` (`id`, `title`, `slug`, `content`, `excerpt`, `featured_image`, `category_id`, `user_id`, `language_id`, `is_premium`, `is_private`, `is_featured`, `is_headline`, `status`, `views_count`, `meta_title`, `meta_description`, `meta_keywords`, `published_at`, `created_at`, `updated_at`) VALUES
-(19, 'Kuantum Bilgisayarın Geleceği', 'kuantum-bilgisayarin-gelecegi', '<p dir=\"ltr\" data-pm-slice=\"1 1 []\">Kuantum bilgisayarı, klasik bilgisayarlardan farklı olarak kuantum mekaniği prensiplerine dayalı hesaplama yapabilen bir teknolojidir. Geleneksel bilgisayarlarda bitler 0 veya 1 değerini alırken, kuantum bilgisayarlarda kubitler s&uuml;perpozisyon ve dolaşıklık gibi kuantum &ouml;zelliklerini kullanarak aynı anda birden fazla durumu temsil edebilir. Bu, kuantum bilgisayarların belirli problemleri &ccedil;&ouml;zmede klasik bilgisayarlardan kat kat daha hızlı olabileceği anlamına gelir.</p>\r\n<h2 dir=\"ltr\">Kuantum Bilgisayarın G&uuml;n&uuml;m&uuml;zdeki Durumu</h2>\r\n<p dir=\"ltr\">2025 itibarıyla kuantum bilgisayarı teknolojisi h&acirc;l&acirc; gelişim aşamasındadır. IBM, Google, Microsoft gibi teknoloji devleri ve D-Wave gibi uzmanlaşmış şirketler, kuantum bilgisayarların pratik uygulamalarını hayata ge&ccedil;irmek i&ccedil;in yoğun &ccedil;alışmalar y&uuml;r&uuml;tmektedir. &Ouml;rneğin, IBM\'in 2023\'te tanıttığı 433 kubitlik Osprey işlemcisi, kuantum hesaplama kapasitesinde &ouml;nemli bir adımdı. Ancak, kuantum bilgisayarlar hen&uuml;z genel ama&ccedil;lı kullanıma hazır değildir ve genellikle yalnızca belirli problemler i&ccedil;in optimize edilmiştir.</p>\r\n<h3 dir=\"ltr\">Mevcut Uygulamalar</h3>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Kriptografi</strong>: Kuantum bilgisayarlar, klasik şifreleme y&ouml;ntemlerini (&ouml;rneğin RSA) kırabilecek potansiyele sahiptir. Bu nedenle, kuantum-diren&ccedil;li şifreleme algoritmaları &uuml;zerine &ccedil;alışmalar hız kazanmıştır.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Kimya ve Malzeme Bilimi</strong>: Kuantum bilgisayarlar, molek&uuml;llerin kuantum d&uuml;zeyde sim&uuml;lasyonunu yaparak yeni ila&ccedil;ların veya malzemelerin keşfini hızlandırabilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Optimizasyon Problemleri</strong>: Lojistik, finans ve yapay zeka gibi alanlarda karmaşık optimizasyon problemlerini &ccedil;&ouml;zmek i&ccedil;in kuantum algoritmaları umut vadetmektedir.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Gelecekteki Potansiyel</h2>\r\n<p dir=\"ltr\">Kuantum bilgisayarın geleceği, hem teknolojik hem de toplumsal a&ccedil;ıdan b&uuml;y&uuml;k bir d&ouml;n&uuml;ş&uuml;m vaat ediyor. &Ouml;n&uuml;m&uuml;zdeki 10-15 yıl i&ccedil;inde aşağıdaki gelişmelerin ger&ccedil;ekleşmesi bekleniyor:</p>\r\n<ol class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Hata D&uuml;zeltme ve &Ouml;l&ccedil;eklenebilirlik</strong>: Kuantum bilgisayarların g&uuml;venilirliği, hata d&uuml;zeltme algoritmalarındaki ilerlemelerle artacak. Bu, daha b&uuml;y&uuml;k ve daha karmaşık problemlerin &ccedil;&ouml;z&uuml;lmesini m&uuml;mk&uuml;n kılacak.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Kuantum İnterneti</strong>: Kuantum dolaşıklığına dayalı iletişim ağları, ultra g&uuml;venli veri transferini sağlayabilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>End&uuml;striyel Uygulamalar</strong>: Enerji, sağlık, finans ve yapay zeka gibi sekt&ouml;rlerde kuantum bilgisayarlar, mevcut teknolojilerin sınırlarını zorlayarak yenilik&ccedil;i &ccedil;&ouml;z&uuml;mler sunabilir.</p>\r\n</li>\r\n</ol>\r\n<h2 dir=\"ltr\">Zorluklar ve Engeller</h2>\r\n<p dir=\"ltr\">Kuantum bilgisayarın yaygınlaşmasının &ouml;n&uuml;nde bazı &ouml;nemli engeller bulunmaktadır:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Teknik Zorluklar</strong>: Kuantum sistemleri, &ccedil;evresel g&uuml;r&uuml;lt&uuml;ye karşı son derece hassastır ve bu, kubitlerin kararlılığını korumayı zorlaştırır.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Maliyet</strong>: Kuantum bilgisayarların &uuml;retimi ve bakımı şu anda olduk&ccedil;a pahalıdır.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Yetkinlik Eksikliği</strong>: Kuantum programlama ve algoritma geliştirme konusunda uzmanlaşmış profesyonellerin sayısı h&acirc;l&acirc; sınırlıdır.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Sonu&ccedil;</h2>\r\n<p dir=\"ltr\">Kuantum bilgisayarı, insanlığın hesaplama g&uuml;c&uuml;n&uuml; yeniden tanımlama potansiyeline sahiptir. Hen&uuml;z başlangı&ccedil; aşamasında olmasına rağmen, bu teknoloji bilim, end&uuml;stri ve g&uuml;venlik alanlarında devrim yaratabilir. Gelecek yıllarda, kuantum teknolojisinin gelişimiyle birlikte, g&uuml;nl&uuml;k hayatımızda da etkilerini g&ouml;rmemiz muhtemeldir. Ancak, bu potansiyelin realize edilmesi i&ccedil;in hem teknik hem de toplumsal hazırlıkların tamamlanması gerekiyor.</p>', 'Kuantum bilgisayarı, klasik bilgisayarlardan farklı olarak kuantum mekaniği prensiplerine dayalı hesaplama yapabilen bir teknolojidir.', 'https://ioturkiye.com/wp-content/uploads/2022/09/5144681b9f6c20e88e6e96cb6c78af8b-e1663409429771.jpeg', 13, 1, 1, 0, 0, 0, 0, 'published', 1, 'Kuantum', 'Kuantum', NULL, NULL, '2025-07-10 19:12:35', '2025-07-10 19:12:51'),
-(20, 'Telemedicine ve Sağlık Hizmetlerinin Geleceği', 'telemedicine-ve-saglik-hizmetlerinin-gelecegi', '<p dir=\"ltr\" data-pm-slice=\"1 1 []\">Telemedicine, sağlık hizmetlerinin dijital platformlar &uuml;zerinden sunulmasını sağlayan bir teknolojidir. &Ouml;zellikle 2020\'lerin başında pandemiyle birlikte pop&uuml;lerlik kazanan telemedicine, hastaların doktorlarla video konferans, mobil uygulamalar veya &ccedil;evrimi&ccedil;i portallar aracılığıyla iletişim kurmasını m&uuml;mk&uuml;n kılıyor. Bu makale, telemedicine&rsquo;in sağlık sekt&ouml;r&uuml;ndeki mevcut etkilerini, avantajlarını, zorluklarını ve gelecekteki potansiyelini ele alıyor.</p>\r\n<h2 dir=\"ltr\">Telemedicine&rsquo;in G&uuml;n&uuml;m&uuml;zdeki Rol&uuml;</h2>\r\n<p dir=\"ltr\">2025 itibarıyla telemedicine, sağlık hizmetlerinin ayrılmaz bir par&ccedil;ası haline gelmiştir. D&uuml;nya genelinde hastaneler, klinikler ve &ouml;zel sağlık kuruluşları, rutin kontrollerden kronik hastalık y&ouml;netimine kadar bir&ccedil;ok alanda telemedicine&rsquo;i entegre etmiştir. &Ouml;rneğin:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Uzak B&ouml;lgelerdeki Erişim</strong>: Kırsal veya sağlık altyapısının sınırlı olduğu b&ouml;lgelerde yaşayan hastalar, uzman doktorlara erişim sağlayabiliyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Psikolojik Destek</strong>: Online terapi ve danışmanlık hizmetleri, ruh sağlığı alanında b&uuml;y&uuml;k bir boşluğu dolduruyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Kronik Hastalık Takibi</strong>: Diyabet, hipertansiyon gibi kronik hastalıkları olan hastalar, wearable cihazlar ve telemedicine platformları aracılığıyla d&uuml;zenli olarak izleniyor.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Avantajları</h2>\r\n<p dir=\"ltr\">Telemedicine, hem hastalara hem de sağlık sistemine &ouml;nemli faydalar sunar:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Erişim Kolaylığı</strong>: Hastalar, evlerinden &ccedil;ıkmadan sağlık hizmetlerine ulaşabilir, bu da &ouml;zellikle yaşlılar ve engelli bireyler i&ccedil;in b&uuml;y&uuml;k bir avantajdır.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Maliyet Etkinliği</strong>: Fiziksel ziyaretlerin azalması, hem hastalar hem de sağlık kuruluşları i&ccedil;in maliyetleri d&uuml;ş&uuml;r&uuml;r.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Zaman Tasarrufu</strong>: Randevu s&uuml;relerinin kısalması ve seyahat ihtiyacının ortadan kalkması, hasta memnuniyetini artırır.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Erken M&uuml;dahale</strong>: Telemedicine, semptomların erken teşhisini ve hızlı m&uuml;dahaleyi kolaylaştırır.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Zorluklar ve Engeller</h2>\r\n<p dir=\"ltr\">Telemedicine&rsquo;in yaygınlaşması, bazı &ouml;nemli zorluklarla karşı karşıyadır:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Teknolojik Altyapı</strong>: İnternet erişimi olmayan veya teknolojiye aşina olmayan bireyler, telemedicine hizmetlerinden yeterince faydalanamıyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Veri G&uuml;venliği</strong>: Hasta verilerinin korunması, siber g&uuml;venlik tehditleri nedeniyle kritik bir konudur. Sağlık verilerinin k&ouml;t&uuml;ye kullanımı, ciddi etik ve yasal sorunlara yol a&ccedil;abilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Tanı Sınırlamaları</strong>: Fiziksel muayene gerektiren durumlarda, telemedicine yetersiz kalabilir. &Ouml;rneğin, bazı hastalıkların teşhisi i&ccedil;in laboratuvar testleri veya g&ouml;r&uuml;nt&uuml;leme teknikleri gereklidir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Reg&uuml;lasyonlar</strong>: &Uuml;lkeler arasında telemedicine uygulamalarına ilişkin yasal d&uuml;zenlemeler farklılık g&ouml;steriyor, bu da uluslararası hizmet sunumunu zorlaştırıyor.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Gelecekteki Potansiyel</h2>\r\n<p dir=\"ltr\">Telemedicine, yapay zeka (AI), giyilebilir teknolojiler ve 5G gibi yeniliklerle birleştiğinde, sağlık hizmetlerinin geleceğini yeniden şekillendirme potansiyeline sahiptir:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>AI Destekli Teşhis</strong>: Yapay zeka, telemedicine platformlarında semptom analizi ve erken teşhis i&ccedil;in kullanılabilir. &Ouml;rneğin, deri lezyonlarının g&ouml;r&uuml;nt&uuml; analizleriyle cilt kanseri teşhisi yapılabiliyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Giyilebilir Cihazlar</strong>: Akıllı saatler ve sens&ouml;rler, hastaların vital bulgularını ger&ccedil;ek zamanlı olarak doktorlara iletebilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Kişiselleştirilmiş Tıp</strong>: Telemedicine, genetik veriler ve hasta ge&ccedil;mişiyle birleştirildiğinde, bireyselleştirilmiş tedavi planları sunabilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>K&uuml;resel Sağlık Ağı</strong>: 5G ve uydu internet teknolojileri, telemedicine&rsquo;in d&uuml;nya &ccedil;apında daha erişilebilir hale gelmesini sağlayabilir.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Sonu&ccedil;</h2>\r\n<p dir=\"ltr\">Telemedicine, sağlık hizmetlerini daha erişilebilir, verimli ve hasta odaklı hale getirerek modern tıbbın &ouml;nemli bir bileşeni olmuştur. Ancak, teknolojinin tam potansiyeline ulaşması i&ccedil;in altyapı eksikliklerinin giderilmesi, veri g&uuml;venliğinin sağlanması ve yasal &ccedil;er&ccedil;evenin standardize edilmesi gerekiyor. Gelecek yıllarda, telemedicine&rsquo;in sağlık sekt&ouml;r&uuml;ndeki etkisi daha da artarak, hem bireylerin yaşam kalitesini y&uuml;kseltecek hem de k&uuml;resel sağlık sistemlerini d&ouml;n&uuml;şt&uuml;recektir.</p>', 'Telemedicine, sağlık hizmetlerinin dijital platformlar üzerinden sunulmasını sağlayan bir teknolojidir.', 'https://medya24com.teimg.com/medya24-com/uploads/2024/07/artificial-intelligence-and-telemedicine.jpg', 14, 1, 1, 0, 0, 0, 0, 'published', 0, 'Telemedicine', 'Telemedicine', NULL, NULL, '2025-07-10 19:15:50', '2025-07-10 19:15:50'),
-(21, 'Akıllı Telefonların Evrimi ve Geleceği', 'akilli-telefonlarin-evrimi-ve-gelecegi', '<p dir=\"ltr\" data-pm-slice=\"1 1 []\">Akıllı telefonlar, modern yaşamın vazge&ccedil;ilmez bir par&ccedil;ası haline gelmiştir. İlk olarak 1990\'larda ortaya &ccedil;ıkan basit cep telefonlarından, g&uuml;n&uuml;m&uuml;zde yapay zeka destekli, &ccedil;ok işlevli cihazlara kadar uzanan bu yolculuk, teknolojinin insan hayatındaki d&ouml;n&uuml;şt&uuml;r&uuml;c&uuml; g&uuml;c&uuml;n&uuml; g&ouml;zler &ouml;n&uuml;ne seriyor. Bu makale, akıllı telefonların evrimini, mevcut durumunu ve gelecekteki potansiyelini inceliyor.</p>\r\n<h2 dir=\"ltr\">Akıllı Telefonların Tarihsel Gelişimi</h2>\r\n<p dir=\"ltr\">Akıllı telefonların k&ouml;keni, 1992\'de IBM\'in tanıttığı Simon Personal Communicator\'a kadar uzanır. Bu cihaz, telefon g&ouml;r&uuml;şmelerinin &ouml;tesinde e-posta g&ouml;nderme ve takvim y&ouml;netimi gibi &ouml;zellikler sunuyordu. Ancak, akıllı telefonların pop&uuml;lerleşmesi 2007\'de Apple\'ın iPhone\'u piyasaya s&uuml;rmesiyle başladı. iPhone, dokunmatik ekran, kullanıcı dostu aray&uuml;z ve uygulama ekosistemiyle &ccedil;ığır a&ccedil;tı. Ardından Android işletim sisteminin y&uuml;kselişi, Samsung, Xiaomi ve diğer markaların rekabete katılmasıyla pazar &ccedil;eşitlendi.</p>\r\n<p dir=\"ltr\">2010\'larda 4G bağlantısı, daha g&uuml;&ccedil;l&uuml; işlemciler ve y&uuml;ksek &ccedil;&ouml;z&uuml;n&uuml;rl&uuml;kl&uuml; kameralar akıllı telefonları birer mini bilgisayara d&ouml;n&uuml;şt&uuml;rd&uuml;. 2020\'lere gelindiğinde ise 5G, katlanabilir ekranlar ve yapay zeka entegrasyonu gibi yenilikler standart haline geldi.</p>\r\n<h2 dir=\"ltr\">G&uuml;n&uuml;m&uuml;zdeki Durum</h2>\r\n<p dir=\"ltr\">2025 itibarıyla akıllı telefonlar, iletişimden &ccedil;ok daha fazlasını sunuyor:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>&Ccedil;ok Y&ouml;nl&uuml; Kullanım</strong>: Telefonlar, sosyal medya, oyun, iş y&ouml;netimi, fotoğraf&ccedil;ılık ve hatta sağlık takibi i&ccedil;in kullanılıyor. &Ouml;rneğin, bazı cihazlar kan oksijen seviyesini &ouml;l&ccedil;ebiliyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Yapay Zeka Entegrasyonu</strong>: AI, sesli asistanlardan (Siri, Google Assistant) kamera optimizasyonuna kadar her alanda rol oynuyor. Fotoğraf d&uuml;zenleme ve ger&ccedil;ek zamanlı &ccedil;eviri gibi &ouml;zellikler artık sıradan.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>S&uuml;rd&uuml;r&uuml;lebilirlik &Ccedil;abaları</strong>: Apple ve Samsung gibi şirketler, geri d&ouml;n&uuml;şt&uuml;r&uuml;lebilir malzemeler kullanarak &ccedil;evre dostu telefonlar &uuml;retmeye odaklanıyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Katlanabilir Telefonlar</strong>: Samsung Galaxy Z Fold ve Flip serileri gibi katlanabilir cihazlar, taşınabilirlik ve ekran boyutu arasında denge sağlıyor.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Gelecekteki Potansiyel</h2>\r\n<p dir=\"ltr\">Akıllı telefonların geleceği, teknolojik yeniliklerle şekillenecek:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Artırılmış Ger&ccedil;eklik (AR) ve Sanal Ger&ccedil;eklik (VR)</strong>: Telefonlar, AR g&ouml;zl&uuml;kleriyle entegre olarak oyun, eğitim ve iş d&uuml;nyasında immersive deneyimler sunabilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Enerji Verimliliği</strong>: Yeni batarya teknolojileri, &ouml;rneğin grafen bazlı piller, şarj s&uuml;relerini kısaltabilir ve cihazların g&uuml;nlerce &ccedil;alışmasını sağlayabilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Mod&uuml;ler Tasarım</strong>: Telefonların par&ccedil;alarının (kamera, batarya) kolayca değiştirilebilir olması, hem maliyetleri d&uuml;ş&uuml;rebilir hem de elektronik atığı azaltabilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Biyometrik Gelişmeler</strong>: Y&uuml;z tanıma ve parmak izi tarayıcılarının &ouml;tesinde, kan akışı veya beyin dalgaları gibi yeni biyometrik sistemler g&uuml;venlik standartlarını y&uuml;kseltebilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>6G ve &Ouml;tesi</strong>: 6G ağlarının 2030\'larda devreye girmesiyle, ultra d&uuml;ş&uuml;k gecikme s&uuml;releri ve holografik iletişim gibi yenilikler m&uuml;mk&uuml;n olabilir.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Zorluklar</h2>\r\n<p dir=\"ltr\">Akıllı telefon sekt&ouml;r&uuml;n&uuml;n karşılaştığı bazı engeller şunlardır:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Gizlilik ve G&uuml;venlik</strong>: Kullanıcı verilerinin korunması, &ouml;zellikle AI ve bulut tabanlı hizmetlerin artmasıyla kritik bir sorun.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Elektronik Atık</strong>: Her yıl milyonlarca telefon atık haline geliyor. Geri d&ouml;n&uuml;ş&uuml;m s&uuml;re&ccedil;lerinin geliştirilmesi gerekiyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Pazar Doygunluğu</strong>: Yenilik&ccedil;i &ouml;zelliklerin azalması, t&uuml;keticilerin telefon değiştirme sıklığını d&uuml;ş&uuml;r&uuml;yor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Bağımlılık</strong>: Akıllı telefonların aşırı kullanımı, &ouml;zellikle gen&ccedil;lerde dikkat dağınıklığı ve sosyal izolasyon gibi sorunlara yol a&ccedil;ıyor.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Sonu&ccedil;</h2>\r\n<p dir=\"ltr\">Akıllı telefonlar, iletişimden eğlenceye, sağlıktan eğitime kadar hayatımızın her alanında devrim yarattı. 2025&rsquo;te, bu cihazlar teknolojik yeniliklerin &ouml;n saflarında yer alıyor ve gelecekte daha da entegre, s&uuml;rd&uuml;r&uuml;lebilir ve kullanıcı odaklı hale gelmesi bekleniyor. Ancak, gizlilik, &ccedil;evre ve toplumsal etkiler gibi konularda dikkatli adımlar atılması, bu teknolojinin s&uuml;rd&uuml;r&uuml;lebilir bir şekilde ilerlemesi i&ccedil;in şart.</p>', 'Akıllı telefonlar, modern yaşamın vazgeçilmez bir parçası haline gelmiştir. İlk olarak 1990&amp;#039;larda ortaya çıkan basit cep telefonlarından, günümüzde yapay zeka destekli, çok işlevli cihazlara kadar uzanan bu yolculuk, teknolojinin insan hayatındaki dönüştürücü gücünü gözler önüne seriyor.', 'https://www.innova.com.tr/medias/akilli-telefonlarin-gelecegi.jpg', 15, 1, 1, 0, 0, 0, 0, 'published', 2, 'Akıllı Telefonlar', 'Akıllı Telefonlar', NULL, NULL, '2025-07-10 19:18:11', '2025-07-14 10:29:14'),
-(22, 'Sürdürülebilir Turizm ve Geleceğin Gezi Trendleri', 'surdurulebilir-turizm-ve-gelecegin-gezi-trendleri', '<p dir=\"ltr\" data-pm-slice=\"1 1 []\">Gezi, insanlık tarihinin en eski aktivitelerinden biridir ve g&uuml;n&uuml;m&uuml;zde hem bireysel hem de toplumsal d&uuml;zeyde b&uuml;y&uuml;k bir &ouml;neme sahiptir. 2025 itibarıyla, turizm sekt&ouml;r&uuml; teknolojik yenilikler, &ccedil;evresel farkındalık ve değişen t&uuml;ketici alışkanlıklarıyla yeniden şekilleniyor. Bu makale, s&uuml;rd&uuml;r&uuml;lebilir turizmin y&uuml;kselişini, gezi alışkanlıklarındaki d&ouml;n&uuml;ş&uuml;m&uuml; ve gelecekteki trendleri ele alıyor.</p>\r\n<h2 dir=\"ltr\">&nbsp;</h2>\r\n<h1 dir=\"ltr\">S&uuml;rd&uuml;r&uuml;lebilir Turizmin Y&uuml;kselişi</h1>\r\n<p dir=\"ltr\">S&uuml;rd&uuml;r&uuml;lebilir turizm, &ccedil;evresel, k&uuml;lt&uuml;rel ve ekonomik kaynakları korurken gezginlere otantik deneyimler sunmayı hedefler. İklim değişikliği ve doğal kaynakların t&uuml;kenmesi gibi sorunlar, turizm sekt&ouml;r&uuml;n&uuml; daha sorumlu bir yaklaşıma zorluyor. 2025&rsquo;te s&uuml;rd&uuml;r&uuml;lebilir turizm, aşağıdaki şekillerde kendini g&ouml;steriyor:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Eko-Dostu Konaklama</strong>: Karbon n&ouml;tr oteller, geri d&ouml;n&uuml;şt&uuml;r&uuml;lebilir malzemelerle inşa edilen tatil k&ouml;yleri ve enerji verimli tesisler pop&uuml;lerlik kazanıyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Yerel K&uuml;lt&uuml;rlerin Korunması</strong>: Gezginler, yerel topluluklarla etkileşime girerek onların geleneklerini ve ekonomilerini destekleyen turları tercih ediyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>D&uuml;ş&uuml;k Karbonlu Ulaşım</strong>: Elektrikli trenler, bisiklet turları ve paylaşımlı ulaşım se&ccedil;enekleri, u&ccedil;ak gibi y&uuml;ksek karbon salınımlı alternatiflere kıyasla daha &ccedil;ok rağbet g&ouml;r&uuml;yor.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">&nbsp;</h2>\r\n<h1 dir=\"ltr\">G&uuml;n&uuml;m&uuml;z Gezi Trendleri</h1>\r\n<p dir=\"ltr\">2025&rsquo;te gezi alışkanlıkları, teknoloji ve bireysel ihtiya&ccedil;lar doğrultusunda evrilmeye devam ediyor:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Dijital G&ouml;&ccedil;ebelik</strong>: Uzaktan &ccedil;alışma k&uuml;lt&uuml;r&uuml;n&uuml;n yaygınlaşmasıyla, gezginler uzun s&uuml;reli konaklamalar i&ccedil;in &ldquo;&ccedil;alışma tatilleri&rdquo; d&uuml;zenliyor. Bali, Lizbon ve Tiflis gibi destinasyonlar, dijital g&ouml;&ccedil;ebeler i&ccedil;in pop&uuml;ler merkezler haline geldi.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Macera ve Wellness Turizmi</strong>: Yoga kampları, dağ tırmanışları ve meditasyon inzivaları gibi hem fiziksel hem de zihinsel sağlığı destekleyen geziler reva&ccedil;ta.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Kişiselleştirilmiş Deneyimler</strong>: Yapay zeka destekli seyahat uygulamaları, gezginlerin ilgi alanlarına g&ouml;re &ouml;zelleştirilmiş rotalar ve aktiviteler sunuyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Kısa Mesafeli Seyahatler</strong>: Pandemi sonrası d&ouml;nemde başlayan &ldquo;yakın destinasyon&rdquo; trendi devam ediyor. İnsanlar, kendi &uuml;lkelerindeki veya komşu b&ouml;lgelerdeki gizli kalmış yerleri keşfetmeyi tercih ediyor.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">&nbsp;</h2>\r\n<h1 dir=\"ltr\">Geleceğin Gezi Trendleri</h1>\r\n<p dir=\"ltr\">Turizm sekt&ouml;r&uuml;, &ouml;n&uuml;m&uuml;zdeki yıllarda teknolojik ve toplumsal değişimlerden etkilenmeye devam edecek:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Sanal ve Artırılmış Ger&ccedil;eklik (VR/AR)</strong>: VR turları, fiziksel seyahat &ouml;ncesi destinasyonları deneyimleme imkanı sunacak. &Ouml;rneğin, bir gezgin Machu Picchu&rsquo;yu sanal olarak gezebilir ve ardından fiziksel ziyareti planlayabilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Uzay Turizmi</strong>: SpaceX ve Blue Origin gibi şirketlerin &ccedil;alışmaları sayesinde, uzay gezileri 2030&rsquo;lara doğru daha erişilebilir hale gelebilir. Ay veya d&uuml;ş&uuml;k y&ouml;r&uuml;nge turları, ultra zengin gezginler i&ccedil;in bir se&ccedil;enek olacak.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Akıllı Destinasyonlar</strong>: Nesnelerin İnterneti (IoT) ve 5G teknolojileri, şehirlerin turist akışını y&ouml;netmesini ve kişiselleştirilmiş hizmetler sunmasını sağlayacak. &Ouml;rneğin, akıllı şehirlerdeki sens&ouml;rler, kalabalık b&ouml;lgeler hakkında ger&ccedil;ek zamanlı bilgi verebilir.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>İklim Odaklı Seyahat</strong>: Gezginler, karbon ayak izlerini dengelemek i&ccedil;in &ldquo;karbon ofset&rdquo; programlarına katılacak veya yalnızca &ccedil;evre dostu destinasyonları se&ccedil;ecek.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">&nbsp;</h2>\r\n<h1 dir=\"ltr\">Zorluklar</h1>\r\n<p dir=\"ltr\">S&uuml;rd&uuml;r&uuml;lebilir turizmin ve modern gezi trendlerinin yaygınlaşması bazı engellerle karşı karşıya:</p>\r\n<ul class=\"tight\" dir=\"ltr\" data-tight=\"true\">\r\n<li>\r\n<p dir=\"ltr\"><strong>Aşırı Turizm</strong>: Venedik, Barselona gibi pop&uuml;ler destinasyonlarda yerel halk, turist kalabalığından rahatsız. Bu, daha az bilinen b&ouml;lgelere y&ouml;nelimi artırıyor.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Maliyet</strong>: S&uuml;rd&uuml;r&uuml;lebilir seyahat se&ccedil;enekleri, &ouml;zellikle eko-dostu tesisler veya karbon n&ouml;tr u&ccedil;uşlar, genellikle daha pahalı.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Eğitim Eksikliği</strong>: Gezginlerin s&uuml;rd&uuml;r&uuml;lebilirlik konusunda bilin&ccedil;lenmesi i&ccedil;in daha fazla farkındalık kampanyasına ihtiya&ccedil; var.</p>\r\n</li>\r\n<li>\r\n<p dir=\"ltr\"><strong>Erişim Eşitsizliği</strong>: Teknolojik yenilikler, d&uuml;ş&uuml;k gelirli bireyler veya gelişmekte olan &uuml;lkeler i&ccedil;in her zaman erişilebilir olmayabilir.</p>\r\n</li>\r\n</ul>\r\n<h2 dir=\"ltr\">Sonu&ccedil;</h2>\r\n<p dir=\"ltr\">Gezi, hem bireylerin d&uuml;nyayı keşfetme arzusunu tatmin eden hem de k&uuml;lt&uuml;rler arası k&ouml;pr&uuml;ler kuran g&uuml;&ccedil;l&uuml; bir ara&ccedil;tır. 2025&rsquo;te, s&uuml;rd&uuml;r&uuml;lebilirlik ve teknoloji, turizm sekt&ouml;r&uuml;n&uuml;n ana itici g&uuml;&ccedil;leri haline gelmiştir. Gelecekte, gezginlerin daha bilin&ccedil;li, &ccedil;evre dostu ve kişiselleştirilmiş deneyimler arayışı, sekt&ouml;r&uuml; yeniden tanımlayacak. Ancak, bu d&ouml;n&uuml;ş&uuml;m&uuml;n adil ve kapsayıcı olması i&ccedil;in hem gezginlerin hem de end&uuml;strinin sorumluluk alması gerekiyor.</p>', 'Gezi, insanlık tarihinin en eski aktivitelerinden biridir ve günümüzde hem bireysel hem de toplumsal düzeyde büyük bir öneme sahiptir. 2025 itibarıyla, turizm sektörü teknolojik yenilikler, çevresel farkındalık ve değişen tüketici alışkanlıklarıyla yeniden şekilleniyor', 'https://www.speakeragency.com.tr/media/2inpupvy/690x460-4.jpg', 16, 1, 1, 1, 0, 0, 0, 'published', 11, 'Turizm', 'Turizm', NULL, NULL, '2025-07-10 19:20:43', '2025-07-26 16:16:29'),
-(51, 'Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler', 'saglikli-yasam-icin-pratik-ipuclari-ve-onemli-bilgiler', '<figure class=\"image featured-image\"><img src=\"https://images.unsplash.com/photo-1592580715317-19adca36288e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwyfHxTYSVDNCU5RmwlQzQlQjFrbCVDNCVCMSUyMFlhJUM1JTlGYW0lMjAlQzQlQjAlQzMlQTdpbiUyMFByYXRpayUyMCVDNCVCMHB1JUMzJUE3bGFyJUM0JUIxJTIwdmUlMjAlQzMlOTZuZW1saSUyMEJpbGdpbGVyfGVufDF8MHx8fDE3NTM1NjU4MzB8MA&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler - Kapak Görseli\" title=\"Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler\"><figcaption>Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler - Kapak Görseli</figcaption></figure>\n\n```html\r\n<!DOCTYPE html>\r\n<html lang=\"tr\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <meta name=\"description\" content=\"Sağlıklı bir yaşam için pratik ipuçları ve bilgiler. Beslenme, egzersiz ve zihinsel sağlık üzerine uzman görüşleri.\">\r\n    <meta name=\"keywords\" content=\"sağlık, sağlıklı yaşam, beslenme, egzersiz, zihinsel sağlık, wellness, sağlıklı beslenme, spor, fitness\">\r\n    <title>Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler</title>\r\n</head>\r\n<body>\r\n\r\n    \r\n\r\n    <p>Sağlıklı bir yaşam sürmek, sadece hastalıklardan uzak olmak anlamına gelmez.  Fiziksel, zihinsel ve duygusal iyiliğin bir araya gelmesiyle oluşan bütüncül bir durumdur.  Günümüzün yoğun temposunda sağlıklı kalmak zor olabilir, ancak küçük değişikliklerle büyük farklar yaratabilirsiniz.  Bu makalede, sağlıklı bir yaşam için pratik ipuçları ve önemli bilgileri bulabilirsiniz.</p>\r\n\r\n    <h2>Beslenme: Vücudunuzun Yakıtı</h2>\r\n\r\n    <h3>Dengeli Beslenme:</h3>\r\n    <p>Sağlıklı beslenmenin temeli, dengeli bir beslenme planıdır.  Meyve, sebze, tam tahıllar, yağsız protein kaynakları ve sağlıklı yağlar tüketmeye özen gösterin. İşlenmiş gıdalar, şekerli içecekler ve aşırı doymuş yağlardan uzak durun.</p>\r\n\r\n    <h3>Suyun Önemi:</h3>\r\n    <p>Vücudunuzun büyük bir bölümünü su oluşturur.  Yeterince su içmek, vücut fonksiyonlarının düzgün çalışması için hayati önem taşır. Günlük su tüketiminizi artırmak için yanınızda su şişesi taşıyabilir ve düzenli aralıklarla su içebilirsiniz.</p>\r\n\r\n    <h2>Egzersiz: Hareketin Gücü</h2>\r\n\r\n    <p>Düzenli egzersiz, fiziksel ve zihinsel sağlığınız için olmazsa olmazdır. Haftada en az 150 dakika orta şiddette aerobik egzersiz yapmaya çalışın.  Yürüyüş, koşu, yüzme veya bisiklet sürme gibi aktiviteler tercih edebilirsiniz.  Ayrıca, haftada en az iki gün kas güçlendirme egzersizleri yapmanız da önemlidir.\n\n<figure class=\"image content-image\"><img src=\"https://images.unsplash.com/photo-1605606437828-598340dfaeb7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwxfHxTYSVDNCU5RmwlQzQlQjFrbCVDNCVCMSUyMFlhJUM1JTlGYW0lMjAlQzQlQjAlQzMlQTdpbiUyMFByYXRpayUyMCVDNCVCMHB1JUMzJUE3bGFyJUM0JUIxJTIwdmUlMjAlQzMlOTZuZW1saSUyMEJpbGdpbGVyfGVufDF8MHx8fDE3NTM1NjU4MzB8MA&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler - İçerik Görseli 1\" title=\"Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler\"><figcaption>Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler - İçerik Görseli 1</figcaption></figure></p>\r\n\r\n    <h2>Zihinsel Sağlık: Unutulmamalı Bir Önem</h2>\r\n\r\n    <p>Fiziksel sağlığınız kadar zihinsel sağlığınız da önemlidir.  Stres yönetimi teknikleri öğrenmek, yeterli uyku almak, hobiler edinmek ve sosyal ilişkilerinizi güçlendirmek zihinsel sağlığınızı korumanıza yardımcı olur.  İhtiyaç duyduğunuzda profesyonel yardım almaktan çekinmeyin.</p>\r\n\r\n    <h2>Sağlıklı Yaşam Yolculuğunuzda İlk Adım</h2>\r\n\r\n    <p>Sağlıklı bir yaşam tarzı benimsemek, bir gecede gerçekleşen bir olay değildir.  Küçük adımlar atarak başlayabilir ve zamanla alışkanlıklarınızı değiştirebilirsiniz.  Önemli olan, kendinize uygun bir plan oluşturmak ve bu plana bağlı kalmaktır.  Unutmayın, sağlıklı bir yaşam, uzun ve kaliteli bir yaşamın anahtarıdır.</p>\r\n\r\n    <p><strong>Bugünden itibaren daha sağlıklı bir yaşam için ilk adımı atın!  Beslenme alışkanlıklarınızı gözden geçirin, düzenli egzersiz yapmaya başlayın ve zihinsel sağlığınıza özen gösterin.</strong>\n\n<figure class=\"image content-image\"><img src=\"https://images.unsplash.com/photo-1592580715317-19adca36288e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwyfHxTYSVDNCU5RmwlQzQlQjFrbCVDNCVCMSUyMFlhJUM1JTlGYW0lMjAlQzQlQjAlQzMlQTdpbiUyMFByYXRpayUyMCVDNCVCMHB1JUMzJUE3bGFyJUM0JUIxJTIwdmUlMjAlQzMlOTZuZW1saSUyMEJpbGdpbGVyfGVufDF8MHx8fDE3NTM1NjU4MzB8MA&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler - İçerik Görseli 2\" title=\"Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler\"><figcaption>Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler - İçerik Görseli 2</figcaption></figure></p>\r\n\r\n</body>\r\n</html>\r\n```', 'Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler - Kapak Görseli ```html Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler Sağlıklı bir yaşam sürmek, sadece hastalıklardan uzak olmak anlamına gelmez. Fiziksel, zihinsel ve duygusal iyiliğin bir araya gelmesiyle oluşan...', 'https://images.unsplash.com/photo-1592580715317-19adca36288e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwyfHxTYSVDNCU5RmwlQzQlQjFrbCVDNCVCMSUyMFlhJUM1JTlGYW0lMjAlQzQlQjAlQzMlQTdpbiUyMFByYXRpayUyMCVDNCVCMHB1JUMzJUE3bGFyJUM0JUIxJ', 14, 1, 1, 0, 0, 0, 0, 'published', 1, 'Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler', 'Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler - Kapak Görseli ```html Sağlıklı Yaşam İçin Pratik İpuçları ve Önemli Bilgiler Sağlıklı bir yaşam sürmek, sadece hastalıklardan uzak olmak anlamına gelmez. Fiziksel, zihinsel ve duygusal iyiliğin bir araya gelmesiyle oluşan...', NULL, NULL, '2025-07-26 21:37:19', '2025-07-26 21:37:27'),
-(52, 'Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi', 'unutulmaz-bir-gezi-icin-tam-kapsamli-gezi-rehberi', '<figure class=\"image featured-image\"><img src=\"https://images.unsplash.com/photo-1719163893241-b36167f81a31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwzfHxVbnV0dWxtYXolMjBCaXIlMjBHZXppJTIwJUM0JUIwJUMzJUE3aW4lMjBUYW0lMjBLYXBzYW1sJUM0JUIxJTIwR2V6aSUyMFJlaGJlcml8ZW58MXwwfHx8MTc1MzU2NTg4MXww&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi - Kapak Görseli\" title=\"Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi\"><figcaption>Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi - Kapak Görseli</figcaption></figure>\n\n```html\r\n<!DOCTYPE html>\r\n<html lang=\"tr\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <meta name=\"description\" content=\"Unutulmaz bir gezi planlamak için ihtiyacınız olan her şey burada! Gezi rehberimiz ile en iyi destinasyonları keşfedin, ipuçlarını öğrenin ve unutulmaz anılar biriktirin.\">\r\n    <meta name=\"keywords\" content=\"gezi rehberi, seyahat, tatil, destinasyon, ipuçları, rehber, planlama, gezilecek yerler\">\r\n    <title>Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi</title>\r\n</head>\r\n<body>\r\n\r\n    \r\n\r\n    <p>Hayallerinizdeki tatili planlamak zorlu bir iş olabilir.  Nereden başlayacağınızı bilmek, doğru bilgileri bulmak ve zamanınızı verimli kullanmak önemlidir. Bu kapsamlı gezi rehberi,  her adımda size yardımcı olmak ve unutulmaz bir deneyim yaşamanızı sağlamak için hazırlandı.</p>\r\n\r\n    <h2>Gezi Planlamanın Temel Adımları</h2>\r\n\r\n    <h3>Hedefinizi Belirleyin</h3>\r\n    <p>Öncelikle nereye gitmek istediğinizi belirleyin.  Deniz, kum ve güneş mi arıyorsunuz, yoksa tarihi yerleri keşfetmeyi mi tercih ediyorsunuz?  Bütçeniz, seyahat tarzınız ve ilgi alanlarınız hedefinizi belirlemede önemli rol oynar.  Macera dolu bir trekking mi, yoksa sakin bir plaj tatili mi istiyorsunuz?  Bu sorulara cevap vererek doğru destinasyonu seçebilirsiniz.</p>\r\n\r\n    <h3>Bütçenizi Planlayın</h3>\r\n    <p>Seyahatinizin maliyetini önceden tahmin etmek çok önemlidir. Uçak bileti, konaklama, yemek, aktiviteler ve ulaşım gibi masrafları göz önünde bulundurun.  Bütçenize uygun bir seyahat planı yaparak hayal kırıklıklarını önleyebilirsiniz.  Fırsatları değerlendirmek ve erken rezervasyon yapmak maliyetleri düşürmenize yardımcı olabilir.</p>\r\n\r\n    <h3>Konaklama Seçeneğinizi Belirleyin</h3>\r\n    <p>Oteller, pansiyonlar, Airbnb gibi farklı konaklama seçenekleri mevcuttur.  Bütçenize, seyahat tarzınıza ve tercihlerinize uygun bir seçenek seçmek önemlidir.  Konum, olanaklar ve yorumlar konaklama seçiminizi etkileyen faktörler arasındadır.\n\n<figure class=\"image content-image\"><img src=\"https://images.unsplash.com/photo-1692895591954-451050db22fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwxfHxVbnV0dWxtYXolMjBCaXIlMjBHZXppJTIwJUM0JUIwJUMzJUE3aW4lMjBUYW0lMjBLYXBzYW1sJUM0JUIxJTIwR2V6aSUyMFJlaGJlcml8ZW58MXwwfHx8MTc1MzU2NTg4MXww&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi - İçerik Görseli 1\" title=\"Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi\"><figcaption>Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi - İçerik Görseli 1</figcaption></figure></p>\r\n\r\n    <h3>Aktivitelerinizi Planlayın</h3>\r\n    <p>Ziyaret edeceğiniz yerlerde yapılacak aktiviteleri önceden araştırın.  Müzeler, tarihi yerler, doğal güzellikler, festivaller ve diğer etkinlikler hakkında bilgi edinin.  Seyahatinizin her gününü planlamak yerine, esneklik bırakmayı unutmayın.  Spontane aktivitelere de yer açın!</p>\r\n\r\n    <h2>Seyahat İpuçları</h2>\r\n    <p>Seyahatinizden önce gerekli belgeleri kontrol edin, seyahat sigortası yaptırın ve yerel kültüre saygılı olun.  Yerel halkla iletişim kurmaktan çekinmeyin, yeni deneyimlere açık olun ve anılarınızı fotoğraflarla ölümsüzleştirin.</p>\r\n\r\n\r\n    <p>Unutulmaz bir gezi için doğru planlama ve hazırlık çok önemlidir.  Bu rehber size yol gösterici olsun ve hayallerinizdeki tatili gerçekleştirmenize yardımcı olsun!\n\n<figure class=\"image content-image\"><img src=\"https://images.unsplash.com/photo-1570714436355-2556087f0912?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwyfHxVbnV0dWxtYXolMjBCaXIlMjBHZXppJTIwJUM0JUIwJUMzJUE3aW4lMjBUYW0lMjBLYXBzYW1sJUM0JUIxJTIwR2V6aSUyMFJlaGJlcml8ZW58MXwwfHx8MTc1MzU2NTg4MXww&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi - İçerik Görseli 2\" title=\"Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi\"><figcaption>Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi - İçerik Görseli 2</figcaption></figure></p>\r\n\r\n    <p><strong>Hemen planlamaya başlayın ve unutulmaz bir maceraya atılın!</strong></p>\r\n\r\n</body>\r\n</html>\r\n```', 'Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi - Kapak Görseli ```html Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi Hayallerinizdeki tatili planlamak zorlu bir iş olabilir. Nereden başlayacağınızı bilmek, doğru bilgileri bulmak ve zamanınızı verimli kullanmak önemlidir. Bu kapsamlı gezi...', 'https://images.unsplash.com/photo-1719163893241-b36167f81a31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwzfHxVbnV0dWxtYXolMjBCaXIlMjBHZXppJTIwJUM0JUIwJUMzJUE3aW4lMjBUYW0lMjBLYXBzYW1sJUM0JUIxJTIwR2V6aSUyMFJlaGJlcml8ZW58MXwwfHx8M', 16, 1, 1, 0, 0, 0, 0, 'published', 1, 'Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi', 'Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi - Kapak Görseli ```html Unutulmaz Bir Gezi İçin Tam Kapsamlı Gezi Rehberi Hayallerinizdeki tatili planlamak zorlu bir iş olabilir. Nereden başlayacağınızı bilmek, doğru bilgileri bulmak ve zamanınızı verimli kullanmak önemlidir. Bu kapsamlı gezi...', NULL, NULL, '2025-07-26 21:38:17', '2025-07-26 21:38:27'),
-(53, 'Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler', 'kayip-sehirlerin-fisiltisi-7-gizli-cennet-unutulmus-tarihler', '<figure class=\"image featured-image\"><img src=\"https://images.unsplash.com/photo-1690061522034-5fe90656d29b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwxfHxLYXklQzQlQjFwJTIwJUM1JTlFZWhpcmxlcmluJTIwRiVDNCVCMXMlQzQlQjFsdCVDNCVCMXMlQzQlQjElM0ElMjA3JTIwR2l6bGklMjBDZW5uZXQlMkMlMjBVbnV0dWxtdSVDNSU5RiUyMFRhcmlobGVyfGVufDF8MHx8fDE3NTM1NjY1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler - Kapak Görseli\" title=\"Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler\"><figcaption>Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler - Kapak Görseli</figcaption></figure>\n\n```html\r\n\r\n\r\n<p>Dünyanın kalbine doğru bir yolculuğa hazır mısınız?  Gezgin ruhların, keşfedilmemiş köşelerin cazibesine kapıldıkları, tarihin unutulmuş sayfalarının fısıltılarını duydukları bir maceraya?</p>\r\n\r\n<h2>Geçmişin Gizli İzlerinde: 7 Şaşırtıcı Destinasyon</h2>\r\n\r\n<p>Sıkıcı turistik noktalardan uzaklaşın!  Bu makalede, kalabalığın uzak kaldığı, doğanın ve tarihin iç içe geçtiği yedi büyüleyici destinasyonu keşfedeceğiz.  Hazırsanız, bilinmeyenin büyülü dünyasına dalalım.</p>\r\n\r\n<h3>1. Kolombiya\'nın Gizli Vadisi: Tayrona\'nın Büyülü Kalıntıları</h3>\r\n\r\n<p>Kayıp bir uygarlığın izlerini taşıyan Tayrona Milli Parkı,  yemyeşil ormanların arasında saklı kalmış antik taş kalıntılarla dolu.  Muhteşem plajları ve  turkuaz suları ise  tarihin ve doğanın kusursuz bir buluşması.</p>\r\n\r\n<h3>2. Peru\'nun Kayıp Şehri:  Chachapoyas\'ın Bulut Ormanlarındaki Sırları</h3>\r\n\r\n<p>And Dağları\'nın eteklerinde, bulutların arasında gizlenmiş,  Kutsal Kuntur Vadisindeki  Chachapoyas şehri, yüksek irtifadaki ihtişamıyla sizi büyüleyecek.  İnkalar öncesi uygarlığın izlerini taşıyan  antik mezarlıklar ve kalıntılar sizi zamanda bir yolculuğa çıkaracak.</p>\r\n\r\n<h3>3.  İtalya\'nın Gizemli Şatosu:  Eerie Rocca Calascio\'nun Yansımaları</h3>\r\n\r\n<p>Apennin Dağları\'nın tepesinde, zamanın durduğu bir yer:  Rocca Calascio Şatosu.  Yüzlerce yıllık geçmişi,  bozulmamış güzelliği ve etrafını saran manzara,  soluğunuzu kesecek kadar etkileyici.\n\n<figure class=\"image content-image\"><img src=\"https://images.unsplash.com/photo-1690061522034-5fe90656d29b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwxfHxLYXklQzQlQjFwJTIwJUM1JTlFZWhpcmxlcmluJTIwRiVDNCVCMXMlQzQlQjFsdCVDNCVCMXMlQzQlQjElM0ElMjA3JTIwR2l6bGklMjBDZW5uZXQlMkMlMjBVbnV0dWxtdSVDNSU5RiUyMFRhcmlobGVyfGVufDF8MHx8fDE3NTM1NjY1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler - İçerik Görseli 1\" title=\"Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler\"><figcaption>Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler - İçerik Görseli 1</figcaption></figure></p>\r\n\r\n<h3>4.  Çin\'in Kayıp Bahçeleri:  Chengde\'nin Gizli Köşkleri</h3>\r\n\r\n<p>İmparatorluk bahçelerinin gizli dünyasını keşfetmeye hazır olun!  Pekin\'in kuzeyindeki Chengde, sayısız köşk, pagoda ve tapınaklarıyla büyüleyici bir görsel şölen sunuyor.  Sessizliğin hüküm sürdüğü bu huzurlu vaha, şehrin karmaşasından kaçmak isteyenler için ideal bir sığınak.</p>\r\n\r\n<h3>5.  Yunanistan\'ın Unutulmuş Adası:  Koufonisia\'nın Masmavi Suları</h3>\r\n\r\n<p>Yunan Adaları\'nın gizli incisi Koufonisia,  kristal berraklığındaki suları ve bakir plajlarıyla masalsı bir tatil deneyimi vaat ediyor.  Kalabalıkların ulaşmadığı bu cennet köşesi,  huzur ve doğanın kucaklaştığı bir yer.</p>\r\n\r\n<h3>6.  Meksika\'nın Gizli Mağaraları:  Xilitla\'nın  Sürreal  Sırları</h3>\r\n\r\n<p>Meksika\'nın büyüleyici  Xilitla,  Edward James\'in  sürrealist mimarisinin izlerini taşıyan  gizli bahçeleri ve mağaralarıyla  fantastik bir dünyaya açılan kapı.  Beklenmedik şekiller ve  doğanın büyüsü,  bu yeri benzersiz kılıyor.</p>\r\n\r\n<h3>7.  Sri Lanka\'nın Kayıp Şelaleleri:  Ella\'nın  Nefes Kesici Güzelliği</h3>\r\n\r\n<p>Sri Lanka\'nın yemyeşil tepelerinde,  Ella kasabası  nefes kesici şelaleleri ve sonsuz çay tarlalarıyla büyüleyici bir manzara sunuyor.  Doğanın ihtişamı ve kültürel zenginliklerin harmanlanması,  unutulmaz bir deneyim yaşatacak.\n\n<figure class=\"image content-image\"><img src=\"https://images.unsplash.com/photo-1717539780863-75b1635259cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwyfHxLYXklQzQlQjFwJTIwJUM1JTlFZWhpcmxlcmluJTIwRiVDNCVCMXMlQzQlQjFsdCVDNCVCMXMlQzQlQjElM0ElMjA3JTIwR2l6bGklMjBDZW5uZXQlMkMlMjBVbnV0dWxtdSVDNSU5RiUyMFRhcmlobGVyfGVufDF8MHx8fDE3NTM1NjY1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler - İçerik Görseli 2\" title=\"Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler\"><figcaption>Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler - İçerik Görseli 2</figcaption></figure></p>\r\n\r\n<p>Bu eşsiz destinasyonlardan sadece birini keşfetmek bile size unutulmaz anılar bırakacak.  Macera dolu bir yolculuğa çıkmaya hazır mısınız?  Hemen planlamaya başlayın ve dünyanın gizli köşelerini keşfedin!</p>\r\n```', 'Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler - Kapak Görseli ```html Dünyanın kalbine doğru bir yolculuğa hazır mısınız? Gezgin ruhların, keşfedilmemiş köşelerin cazibesine kapıldıkları, tarihin unutulmuş sayfalarının fısıltılarını duydukları bir maceraya? Geçmişin...', 'https://images.unsplash.com/photo-1690061522034-5fe90656d29b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODM1Nzl8MHwxfHNlYXJjaHwxfHxLYXklQzQlQjFwJTIwJUM1JTlFZWhpcmxlcmluJTIwRiVDNCVCMXMlQzQlQjFsdCVDNCVCMXMlQzQlQjElM0ElMjA3JTIwR2l6bGklMjBDZW5uZXQlMkMlM', 16, 1, 1, 0, 0, 0, 0, 'published', 1, 'Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler', 'Kayıp Şehirlerin Fısıltısı: 7 Gizli Cennet, Unutulmuş Tarihler - Kapak Görseli ```html Dünyanın kalbine doğru bir yolculuğa hazır mısınız? Gezgin ruhların, keşfedilmemiş köşelerin cazibesine kapıldıkları, tarihin unutulmuş sayfalarının fısıltılarını duydukları bir maceraya? Geçmişin...', NULL, NULL, '2025-07-26 21:49:33', '2025-07-26 21:49:49');
 
 -- --------------------------------------------------------
 
@@ -171,16 +149,6 @@ CREATE TABLE `article_tags` (
   `tag_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Tablo döküm verisi `article_tags`
---
-
-INSERT INTO `article_tags` (`article_id`, `tag_id`) VALUES
-(19, 2),
-(20, 3),
-(21, 4),
-(22, 6);
-
 -- --------------------------------------------------------
 
 --
@@ -197,20 +165,6 @@ CREATE TABLE `banned_users` (
   `banned_by` int(11) DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Tablo döküm verisi `banned_users`
---
-
-INSERT INTO `banned_users` (`id`, `user_id`, `ip_address`, `reason`, `ban_date`, `expiry_date`, `banned_by`, `is_active`) VALUES
-(5, 29, '::1', '..', '2025-07-26 20:31:25', NULL, 1, 0),
-(6, 29, '::1', '..', '2025-07-26 20:36:42', NULL, 1, 0),
-(7, 29, '::1', '..', '2025-07-26 20:38:41', NULL, 1, 0),
-(8, 29, '::1', 'dd', '2025-07-26 21:08:45', NULL, 1, 0),
-(9, 29, '::1', '22', '2025-07-26 21:46:59', '2025-07-27 20:46:59', 1, 0),
-(10, 29, '::1', '22', '2025-07-26 21:51:12', '2025-07-27 20:51:12', 1, 0),
-(11, 29, '::1', '22', '2025-07-26 21:55:32', '2025-07-27 20:55:32', 1, 0),
-(12, 29, '::1', '11', '2025-07-27 00:59:21', NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -231,17 +185,6 @@ CREATE TABLE `categories` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `slug`, `description`, `meta_title`, `meta_description`, `parent_id`, `sort_order`, `is_active`, `created_at`, `updated_at`) VALUES
-(13, 'Teknoloji', 'teknoloji', '', NULL, NULL, NULL, 0, 1, '2025-07-10 19:10:58', '2025-07-10 19:10:58'),
-(14, 'Sağlık', 'saglik', '', NULL, NULL, NULL, 0, 1, '2025-07-10 19:13:54', '2025-07-10 19:13:54'),
-(15, 'Telefon', 'telefon', '', NULL, NULL, NULL, 0, 1, '2025-07-10 19:17:08', '2025-07-10 19:17:08'),
-(16, 'Gezi Rehberi', 'gezi-rehberi', '', NULL, NULL, NULL, 0, 1, '2025-07-10 19:19:29', '2025-07-10 19:19:29'),
-(17, 'Yaşam', 'yasam', '', NULL, NULL, NULL, 0, 1, '2025-07-27 10:06:30', '2025-07-27 10:06:30');
 
 -- --------------------------------------------------------
 
@@ -270,7 +213,7 @@ CREATE TABLE `cloudflare_settings` (
 --
 
 INSERT INTO `cloudflare_settings` (`id`, `is_enabled`, `site_key`, `secret_key`, `login_enabled`, `register_enabled`, `contact_enabled`, `article_enabled`, `difficulty`, `theme`, `language`, `created_at`, `updated_at`) VALUES
-(1, 1, '0x4AAAAAABmofqZ58JUW3xCH', '0x4AAAAAABmofvkyutqezmz5RuU-YmirtZ8', 1, 1, 1, 1, 'hard', 'auto', 'tr', '2025-07-01 10:36:21', '2025-07-26 21:46:45');
+(1, 0, '0x4AAAAAABmofqZ58JUW3xCH', '0x4AAAAAABmofvkyutqezmz5RuU-YmirtZ8', 1, 1, 1, 1, 'hard', 'auto', 'tr', '2025-07-01 10:36:21', '2025-07-28 17:37:02');
 
 -- --------------------------------------------------------
 
@@ -322,15 +265,6 @@ CREATE TABLE `headline_articles` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `headline_articles`
---
-
-INSERT INTO `headline_articles` (`id`, `article_id`, `display_order`, `is_active`, `created_at`, `updated_at`) VALUES
-(27, 22, 1, 1, '2025-07-10 21:07:12', '2025-07-10 21:07:12'),
-(28, 21, 2, 1, '2025-07-10 21:07:12', '2025-07-10 21:07:12'),
-(29, 20, 3, 1, '2025-07-10 21:07:12', '2025-07-10 21:07:12');
 
 -- --------------------------------------------------------
 
@@ -417,6 +351,40 @@ CREATE TABLE `login_attempts` (
   `success` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Tablo döküm verisi `login_attempts`
+--
+
+INSERT INTO `login_attempts` (`id`, `ip_address`, `username`, `attempt_time`, `success`) VALUES
+(1, '::1', 'admin', '2025-07-28 20:18:12', 0),
+(2, '::1', 'admin', '2025-07-28 20:18:13', 1),
+(3, '127.0.0.1', 'co', '2025-07-28 20:27:55', 0),
+(4, '127.0.0.1', 'co', '2025-07-28 20:27:55', 1),
+(5, '127.0.0.1', 'bv', '2025-07-28 20:36:14', 0),
+(6, '127.0.0.1', 'bv', '2025-07-28 20:36:14', 1),
+(7, '127.0.0.1', 'bv', '2025-07-28 20:37:15', 0),
+(8, '127.0.0.1', 'bv', '2025-07-28 20:38:01', 0),
+(9, '127.0.0.1', 'bv', '2025-07-28 20:38:11', 0),
+(10, '127.0.0.1', 'bv', '2025-07-28 20:38:22', 0),
+(11, '127.0.0.1', 'bv', '2025-07-28 20:39:14', 0),
+(12, '127.0.0.1', 'bv', '2025-07-28 20:39:59', 0),
+(13, '127.0.0.1', 'bv', '2025-07-28 20:40:23', 0),
+(14, '127.0.0.1', 'bv', '2025-07-28 20:40:24', 1),
+(15, '127.0.0.1', 'bv', '2025-07-28 20:42:15', 0),
+(16, '127.0.0.1', 'bv', '2025-07-28 20:42:44', 0),
+(17, '127.0.0.1', 'bv', '2025-07-28 20:42:44', 1),
+(18, '127.0.0.1', 'bv', '2025-07-28 20:46:23', 0),
+(19, '127.0.0.1', 'bv', '2025-07-28 20:55:45', 0),
+(20, '127.0.0.1', 'bv', '2025-07-28 20:57:07', 0),
+(21, '127.0.0.1', 'bv', '2025-07-28 20:57:07', 1),
+(22, '127.0.0.1', 'bv', '2025-07-28 21:06:21', 0),
+(23, '127.0.0.1', 'bv', '2025-07-28 21:06:21', 1),
+(24, '127.0.0.1', 'bc', '2025-07-28 21:23:55', 0),
+(25, '127.0.0.1', 'bv', '2025-07-28 21:24:01', 0),
+(26, '127.0.0.1', 'bv', '2025-07-28 21:24:01', 1),
+(27, '127.0.0.1', 'bv', '2025-07-28 21:31:20', 0),
+(28, '127.0.0.1', 'bv', '2025-07-28 21:31:20', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -452,14 +420,6 @@ CREATE TABLE `online_users` (
   `user_agent` text DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `online_users`
---
-
-INSERT INTO `online_users` (`id`, `user_id`, `session_id`, `last_activity`, `ip_address`, `user_agent`, `created_at`) VALUES
-(237, 1, 't8pgk0mfn8k9hi8ff895hu3fhk', '2025-07-27 13:07:32', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '2025-07-27 13:07:26'),
-(238, 1, 'i355uin3kkeckjgmi3t9f4b28d', '2025-07-27 13:17:52', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '2025-07-27 13:15:57');
 
 -- --------------------------------------------------------
 
@@ -517,14 +477,6 @@ CREATE TABLE `payments` (
   `transaction_id` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `payments`
---
-
-INSERT INTO `payments` (`id`, `user_id`, `plan_id`, `amount`, `payment_date`, `status`, `payment_method`, `transaction_id`, `created_at`) VALUES
-(23, 29, 1, 0.00, '2025-07-26 20:30:19', 'completed', 'free', NULL, '2025-07-26 20:30:19'),
-(24, 30, 1, 0.00, '2025-07-27 00:46:33', 'completed', 'free', NULL, '2025-07-27 00:46:33');
 
 -- --------------------------------------------------------
 
@@ -636,7 +588,8 @@ INSERT INTO `remember_tokens` (`id`, `user_id`, `token`, `expires_at`, `created_
 (3, 1, 'd2b6001a415273c8854864962c331b6920ff9a798fe2c4823282f3311c1311ac', '2025-08-25 13:15:36', '2025-07-26 14:15:36'),
 (5, 1, '21e2f23be8a16ce62cc78e2fdcd599ce8f20febe6c59a25c4b90c5616d2b7dd3', '2025-08-25 15:32:14', '2025-07-26 16:32:14'),
 (6, 1, '761926c2650397c81fcf5b22fb8facf339850617630087d2a969cfbdc7b9d7cf', '2025-08-25 21:39:44', '2025-07-26 22:39:44'),
-(7, 1, '170a895c16aa779317763587ebfca804845225a90cc93ba34710bd4ce25e69aa', '2025-08-26 08:22:20', '2025-07-27 09:22:20');
+(7, 1, '170a895c16aa779317763587ebfca804845225a90cc93ba34710bd4ce25e69aa', '2025-08-26 08:22:20', '2025-07-27 09:22:20'),
+(8, 1, '5db88f0f929d9daf36d42b7dc81d93a0dd5ddb4ef2d94a0f1c05abf4197783a2', '2025-08-27 16:18:13', '2025-07-28 17:18:13');
 
 -- --------------------------------------------------------
 
@@ -656,9 +609,9 @@ CREATE TABLE `safe_ips` (
 --
 
 INSERT INTO `safe_ips` (`id`, `ip_address`, `username`, `last_successful_login`) VALUES
-(1, '127.0.0.1', 'co', '2025-07-26 21:48:17'),
-(6, '::1', 'admin', '2025-07-27 12:22:20'),
-(7, '127.0.0.1', 'bv', '2025-07-27 00:57:43');
+(1, '127.0.0.1', 'co', '2025-07-28 20:27:55'),
+(6, '::1', 'admin', '2025-07-28 20:18:13'),
+(7, '127.0.0.1', 'bv', '2025-07-28 21:31:20');
 
 -- --------------------------------------------------------
 
@@ -904,17 +857,17 @@ CREATE TABLE `users` (
   `youtube` varchar(100) DEFAULT NULL,
   `github` varchar(100) DEFAULT NULL,
   `last_ip` varchar(45) DEFAULT NULL,
-  `last_login` datetime DEFAULT NULL
+  `last_login` datetime DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `status` enum('active','banned','suspended') DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile_image`, `bio`, `is_approved`, `is_premium`, `premium_expires_at`, `two_factor_secret`, `is_admin`, `theme_preference`, `language_preference`, `created_at`, `updated_at`, `location`, `website`, `twitter`, `facebook`, `instagram`, `linkedin`, `tiktok`, `youtube`, `github`, `last_ip`, `last_login`) VALUES
-(1, 'admin', 'admin@example.com', '$2y$10$7kIn.GMLrNlKJbtc8C5eweVO93MIw9KspKWxcpeRtnnH2ccJ.li/u', 'assets/images/profiles/6865860ac95f1_1751483914.jpg', '12', 1, 0, NULL, NULL, 1, 'light', 'tr', '2025-07-27 10:17:37', '2025-07-27 10:17:37', '12', 'http://localhost/', '1', '1', '1', '1', '1', '1', '1', '::1', '2025-07-27 12:22:20'),
-(29, 'co', 'co@co.com', '$2y$10$K7NkylhBb0ue0OxBSe6OnOs/8PMZL7f/iMxj0CeFStiTGRFVBEUDa', NULL, NULL, 1, 0, NULL, NULL, 0, 'light', 'tr', '2025-07-27 10:17:37', '2025-07-27 10:17:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2025-07-26 21:48:17'),
-(30, 'bv', 'bv@bv.com', '$2y$10$s5.V68XyR46OuGAvVXRGpezG5fp4ksewE82yfMSVI/XeuCuAc9DQa', NULL, NULL, 1, 0, NULL, NULL, 0, 'light', 'tr', '2025-07-27 10:17:37', '2025-07-27 10:17:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '127.0.0.1', '2025-07-27 00:57:43');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile_image`, `bio`, `is_approved`, `is_premium`, `premium_expires_at`, `two_factor_secret`, `is_admin`, `theme_preference`, `language_preference`, `created_at`, `updated_at`, `location`, `website`, `twitter`, `facebook`, `instagram`, `linkedin`, `tiktok`, `youtube`, `github`, `last_ip`, `last_login`, `is_active`, `status`) VALUES
+(1, 'admin', 'admin@example.com', '$2y$10$7kIn.GMLrNlKJbtc8C5eweVO93MIw9KspKWxcpeRtnnH2ccJ.li/u', 'assets/images/profiles/6865860ac95f1_1751483914.jpg', '12', 1, 0, NULL, NULL, 1, 'light', 'tr', '2025-07-28 18:38:51', '2025-07-28 18:38:51', '12', 'http://localhost/', '1', '1', '1', '1', '1', '1', '1', '::1', '2025-07-28 20:18:13', 1, 'active');
 
 -- --------------------------------------------------------
 
@@ -934,14 +887,6 @@ CREATE TABLE `user_subscriptions` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `user_subscriptions`
---
-
-INSERT INTO `user_subscriptions` (`id`, `user_id`, `plan_id`, `payment_id`, `start_date`, `end_date`, `cancelled_at`, `status`, `created_at`, `updated_at`) VALUES
-(23, 29, 1, 23, '2025-07-26 20:30:19', '2125-07-26 20:30:19', NULL, 'active', '2025-07-26 20:30:19', '2025-07-26 20:30:19'),
-(24, 30, 1, 24, '2025-07-27 00:46:33', '2125-07-27 00:46:33', NULL, 'active', '2025-07-27 00:46:33', '2025-07-27 00:46:33');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -1233,7 +1178,7 @@ ALTER TABLE `ai_articles`
 -- Tablo için AUTO_INCREMENT değeri `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `article_statistics`
@@ -1245,13 +1190,13 @@ ALTER TABLE `article_statistics`
 -- Tablo için AUTO_INCREMENT değeri `banned_users`
 --
 ALTER TABLE `banned_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `cloudflare_settings`
@@ -1293,7 +1238,7 @@ ALTER TABLE `languages`
 -- Tablo için AUTO_INCREMENT değeri `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `messages`
@@ -1305,7 +1250,7 @@ ALTER TABLE `messages`
 -- Tablo için AUTO_INCREMENT değeri `online_users`
 --
 ALTER TABLE `online_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `page_views`
@@ -1323,7 +1268,7 @@ ALTER TABLE `password_resets`
 -- Tablo için AUTO_INCREMENT değeri `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `promo_codes`
@@ -1347,13 +1292,13 @@ ALTER TABLE `registration_attempts`
 -- Tablo için AUTO_INCREMENT değeri `remember_tokens`
 --
 ALTER TABLE `remember_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `safe_ips`
 --
 ALTER TABLE `safe_ips`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `settings`
@@ -1389,13 +1334,13 @@ ALTER TABLE `traffic_sources`
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `user_subscriptions`
 --
 ALTER TABLE `user_subscriptions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
