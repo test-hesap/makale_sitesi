@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 28 Tem 2025, 20:42:23
+-- Üretim Zamanı: 28 Tem 2025, 21:47:04
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -39,14 +39,6 @@ CREATE TABLE `ads` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Tablo döküm verisi `ads`
---
-
-INSERT INTO `ads` (`id`, `name`, `code`, `position`, `type`, `is_active`, `display_order`, `created_at`, `updated_at`) VALUES
-(14, '1', '<a href=\"https://www.mshowto.org\" target=\"_blank\">\r\n<img src=\"https://www.mshowto.org/images/cozumortagi/mavi/MSHOWTOBanner_600x120.jpg\" \r\nalt=\"Türkiye\'nin en doğru, dolu dolu ve hatasız anlatımları ile teknik yazılarına, makalelerine, video\'larına, \r\nseminerlerine, forum sayfasına ve sektörün önde gelenlerine ulaşabileceğiniz teknik topluluğu, MSHOWTO\" \r\nwidth=\"600\" height=\"120\" /></a>', 'sidebar', 'banner', 1, 0, '2025-07-14 10:23:08', '2025-07-14 10:23:08'),
-(15, '2', '<a href=\"https://www.mshowto.org\" target=\"_blank\">\r\n<img src=\"https://www.mshowto.org/images/cozumortagi/mavi/MSHOWTOBanner_600x120.jpg\" \r\nalt=\"Türkiye\'nin en doğru, dolu dolu ve hatasız anlatımları ile teknik yazılarına, makalelerine, video\'larına, \r\nseminerlerine, forum sayfasına ve sektörün önde gelenlerine ulaşabileceğiniz teknik topluluğu, MSHOWTO\" \r\nwidth=\"600\" height=\"120\" /></a>', 'mobile_fixed_bottom', 'banner', 1, 0, '2025-07-14 10:24:35', '2025-07-14 10:24:35');
-
 -- --------------------------------------------------------
 
 --
@@ -61,13 +53,6 @@ CREATE TABLE `ad_statistics` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `ad_statistics`
---
-
-INSERT INTO `ad_statistics` (`id`, `ad_id`, `impressions`, `clicks`, `created_at`, `updated_at`) VALUES
-(1, 15, 49, 0, '2025-07-14 10:29:54', '2025-07-26 16:09:24');
 
 -- --------------------------------------------------------
 
@@ -213,7 +198,7 @@ CREATE TABLE `cloudflare_settings` (
 --
 
 INSERT INTO `cloudflare_settings` (`id`, `is_enabled`, `site_key`, `secret_key`, `login_enabled`, `register_enabled`, `contact_enabled`, `article_enabled`, `difficulty`, `theme`, `language`, `created_at`, `updated_at`) VALUES
-(1, 0, '0x4AAAAAABmofqZ58JUW3xCH', '0x4AAAAAABmofvkyutqezmz5RuU-YmirtZ8', 1, 1, 1, 1, 'hard', 'auto', 'tr', '2025-07-01 10:36:21', '2025-07-28 17:37:02');
+(1, 0, '', '', 1, 1, 1, 1, 'hard', 'auto', 'tr', '2025-07-01 10:36:21', '2025-07-28 19:16:34');
 
 -- --------------------------------------------------------
 
@@ -383,7 +368,11 @@ INSERT INTO `login_attempts` (`id`, `ip_address`, `username`, `attempt_time`, `s
 (25, '127.0.0.1', 'bv', '2025-07-28 21:24:01', 0),
 (26, '127.0.0.1', 'bv', '2025-07-28 21:24:01', 1),
 (27, '127.0.0.1', 'bv', '2025-07-28 21:31:20', 0),
-(28, '127.0.0.1', 'bv', '2025-07-28 21:31:20', 1);
+(28, '127.0.0.1', 'bv', '2025-07-28 21:31:20', 1),
+(29, '::1', 'admin', '2025-07-28 22:16:23', 0),
+(30, '::1', 'admin', '2025-07-28 22:16:23', 1),
+(31, '::1', 'admin', '2025-07-28 22:20:53', 0),
+(32, '::1', 'admin', '2025-07-28 22:20:53', 1);
 
 -- --------------------------------------------------------
 
@@ -421,6 +410,14 @@ CREATE TABLE `online_users` (
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Tablo döküm verisi `online_users`
+--
+
+INSERT INTO `online_users` (`id`, `user_id`, `session_id`, `last_activity`, `ip_address`, `user_agent`, `created_at`) VALUES
+(262, 1, '9e1073ic5id7dj29hrtue4bkbs', '2025-07-28 22:16:53', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '2025-07-28 22:16:15'),
+(263, 1, 'rd60od8plf87dcijqko40crf4i', '2025-07-28 22:26:21', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '2025-07-28 22:20:47');
+
 -- --------------------------------------------------------
 
 --
@@ -445,6 +442,15 @@ CREATE TABLE `page_views` (
   `bounce` tinyint(1) DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `page_views`
+--
+
+INSERT INTO `page_views` (`id`, `page_url`, `page_title`, `user_id`, `session_id`, `ip_address`, `user_agent`, `referer`, `device_type`, `browser`, `operating_system`, `country`, `city`, `reading_time`, `bounce`, `created_at`) VALUES
+(10, '/', 'Localhost', NULL, '6c4c4ccbaf550758e176b6e19507fb59', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '', 'desktop', 'Chrome', 'Windows', NULL, NULL, 0, 1, '2025-07-28 19:20:47'),
+(11, '/login', 'Giriş Yap - Localhost', NULL, '6c4c4ccbaf550758e176b6e19507fb59', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', 'http://localhost/', 'desktop', 'Chrome', 'Windows', NULL, NULL, 0, 1, '2025-07-28 19:20:48'),
+(12, '/', 'Localhost', 1, '6c4c4ccbaf550758e176b6e19507fb59', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', 'http://localhost/login', 'desktop', 'Chrome', 'Windows', NULL, NULL, 0, 1, '2025-07-28 19:20:53');
 
 -- --------------------------------------------------------
 
@@ -610,7 +616,7 @@ CREATE TABLE `safe_ips` (
 
 INSERT INTO `safe_ips` (`id`, `ip_address`, `username`, `last_successful_login`) VALUES
 (1, '127.0.0.1', 'co', '2025-07-28 20:27:55'),
-(6, '::1', 'admin', '2025-07-28 20:18:13'),
+(6, '::1', 'admin', '2025-07-28 22:20:53'),
 (7, '127.0.0.1', 'bv', '2025-07-28 21:31:20');
 
 -- --------------------------------------------------------
@@ -635,14 +641,14 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `setting_key`, `setting_value`, `setting_type`, `description`, `is_editable`, `created_at`, `updated_at`) VALUES
-(1, 'site_title', 'Localhost', 'text', 'Site başlığı', 1, '2025-07-01 09:56:02', '2025-07-26 22:52:57'),
-(2, 'site_description', 'Modern makale sitesi', 'textarea', 'Site açıklaması', 1, '2025-07-01 09:56:02', '2025-07-26 22:52:57'),
-(3, 'site_logo', 'assets/logo1.png', 'text', 'Site logosu', 1, '2025-07-01 09:56:02', '2025-07-26 22:52:57'),
-(4, 'site_favicon', 'assets/images/favicon/favicon.png', 'text', 'Site favicon', 1, '2025-07-01 09:56:02', '2025-07-15 18:38:08'),
-(5, 'smtp_host', 'localhost', 'text', 'SMTP sunucu adresi', 1, '2025-07-01 09:56:02', '2025-07-15 18:29:20'),
-(6, 'smtp_port', '587', 'number', 'SMTP port', 1, '2025-07-01 09:56:02', '2025-07-15 18:29:20'),
-(7, 'smtp_username', 'localhost', 'text', 'SMTP kullanıcı adı', 1, '2025-07-01 09:56:02', '2025-07-15 18:29:20'),
-(8, 'smtp_password', '0000000', 'text', 'SMTP şifre', 1, '2025-07-01 09:56:02', '2025-07-15 18:29:20'),
+(1, 'site_title', 'Localhost', 'text', 'Site başlığı', 1, '2025-07-01 09:56:02', '2025-07-28 19:16:52'),
+(2, 'site_description', 'Modern makale sitesi', 'textarea', 'Site açıklaması', 1, '2025-07-01 09:56:02', '2025-07-28 19:16:52'),
+(3, 'site_logo', 'assets/logo1.png', 'text', 'Site logosu', 1, '2025-07-01 09:56:02', '2025-07-28 19:16:52'),
+(4, 'site_favicon', '', 'text', 'Site favicon', 1, '2025-07-01 09:56:02', '2025-07-28 19:16:52'),
+(5, 'smtp_host', 'localhost', 'text', 'SMTP sunucu adresi', 1, '2025-07-01 09:56:02', '2025-07-28 19:17:08'),
+(6, 'smtp_port', '587', 'number', 'SMTP port', 1, '2025-07-01 09:56:02', '2025-07-28 19:17:08'),
+(7, 'smtp_username', 'localhost', 'text', 'SMTP kullanıcı adı', 1, '2025-07-01 09:56:02', '2025-07-28 19:17:08'),
+(8, 'smtp_password', '0000000', 'text', 'SMTP şifre', 1, '2025-07-01 09:56:02', '2025-07-28 19:17:08'),
 (9, 'stripe_public_key', '', 'text', 'Stripe public key', 1, '2025-07-01 09:56:02', '2025-07-01 09:56:02'),
 (10, 'stripe_secret_key', '', 'text', 'Stripe secret key', 1, '2025-07-01 09:56:02', '2025-07-01 09:56:02'),
 (11, 'paytr_merchant_id', '', 'text', 'PayTR merchant ID', 1, '2025-07-01 09:56:02', '2025-07-01 09:56:02'),
@@ -653,7 +659,7 @@ INSERT INTO `settings` (`id`, `setting_key`, `setting_value`, `setting_type`, `d
 (16, 'enable_comments', '1', 'boolean', 'Yorum sistemi aktif', 1, '2025-07-01 09:56:02', '2025-07-01 09:56:02'),
 (17, 'auto_approve_comments', '0', 'boolean', 'Yorumları otomatik onayla', 1, '2025-07-01 09:56:02', '2025-07-01 09:56:02'),
 (18, 'maintenance_mode', '0', 'boolean', 'Bakım modu', 1, '2025-07-01 09:56:02', '2025-07-01 09:56:02'),
-(19, 'google_analytics', '<!-- Google tag (gtag.js) -->\r\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-H0R85LJQJD\"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag(\'js\', new Date());\r\n\r\n  gtag(\'config\', \'G-H0R85LJQJD\');\r\n</script>', 'textarea', 'Google Analytics kodu', 1, '2025-07-01 09:56:02', '2025-07-02 10:35:37'),
+(19, 'google_analytics', '', 'textarea', 'Google Analytics kodu', 1, '2025-07-01 09:56:02', '2025-07-28 19:17:33'),
 (20, 'social_facebook', '', 'text', 'Facebook URL', 1, '2025-07-01 09:56:02', '2025-07-01 09:56:02'),
 (21, 'social_twitter', '', 'text', 'Twitter URL', 1, '2025-07-01 09:56:02', '2025-07-01 09:56:02'),
 (22, 'social_instagram', '', 'text', 'Instagram URL', 1, '2025-07-01 09:56:02', '2025-07-01 09:56:02'),
@@ -714,7 +720,7 @@ INSERT INTO `settings` (`id`, `setting_key`, `setting_value`, `setting_type`, `d
 (835, 'featured_articles_pagination_type', 'pagination', 'text', 'Öne çıkan makaleler sayfalama türü (pagination/infinite)', 1, '2025-07-15 16:01:39', '2025-07-15 16:23:05'),
 (836, 'recent_articles_pagination_type', 'pagination', 'text', 'Son eklenen makaleler sayfalama türü (pagination/infinite)', 1, '2025-07-15 16:01:39', '2025-07-15 16:23:05'),
 (837, 'popular_articles_pagination_type', 'pagination', 'text', 'Popüler makaleler sayfalama türü (pagination/infinite)', 1, '2025-07-15 16:01:39', '2025-07-15 16:23:05'),
-(838, 'site_logo_dark', 'assets/logo2.png', 'text', NULL, 1, '2025-07-26 22:52:41', '2025-07-26 22:52:57');
+(838, 'site_logo_dark', 'assets/logo2.png', 'text', NULL, 1, '2025-07-26 22:52:41', '2025-07-28 19:16:52');
 
 -- --------------------------------------------------------
 
@@ -867,7 +873,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile_image`, `bio`, `is_approved`, `is_premium`, `premium_expires_at`, `two_factor_secret`, `is_admin`, `theme_preference`, `language_preference`, `created_at`, `updated_at`, `location`, `website`, `twitter`, `facebook`, `instagram`, `linkedin`, `tiktok`, `youtube`, `github`, `last_ip`, `last_login`, `is_active`, `status`) VALUES
-(1, 'admin', 'admin@example.com', '$2y$10$7kIn.GMLrNlKJbtc8C5eweVO93MIw9KspKWxcpeRtnnH2ccJ.li/u', 'assets/images/profiles/6865860ac95f1_1751483914.jpg', '12', 1, 0, NULL, NULL, 1, 'light', 'tr', '2025-07-28 18:38:51', '2025-07-28 18:38:51', '12', 'http://localhost/', '1', '1', '1', '1', '1', '1', '1', '::1', '2025-07-28 20:18:13', 1, 'active');
+(1, 'admin', 'admin@example.com', '$2y$10$7kIn.GMLrNlKJbtc8C5eweVO93MIw9KspKWxcpeRtnnH2ccJ.li/u', 'assets/images/profiles/6865860ac95f1_1751483914.jpg', '12', 1, 0, NULL, NULL, 1, 'light', 'tr', '2025-07-28 18:38:51', '2025-07-28 19:20:53', '12', 'http://localhost/', '1', '1', '1', '1', '1', '1', '1', '::1', '2025-07-28 22:20:53', 1, 'active');
 
 -- --------------------------------------------------------
 
@@ -1238,7 +1244,7 @@ ALTER TABLE `languages`
 -- Tablo için AUTO_INCREMENT değeri `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `messages`
@@ -1250,13 +1256,13 @@ ALTER TABLE `messages`
 -- Tablo için AUTO_INCREMENT değeri `online_users`
 --
 ALTER TABLE `online_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `page_views`
 --
 ALTER TABLE `page_views`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `password_resets`
@@ -1298,7 +1304,7 @@ ALTER TABLE `remember_tokens`
 -- Tablo için AUTO_INCREMENT değeri `safe_ips`
 --
 ALTER TABLE `safe_ips`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `settings`
