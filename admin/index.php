@@ -233,6 +233,7 @@ $current_page = $_GET['page'] ?? 'dashboard';
 
         <!-- Menu Items -->
         <nav class="p-4 space-y-2">
+            <!-- Debug: Current page = <?php echo htmlspecialchars($current_page); ?> -->
             <!-- Dashboard -->
             <a href="?page=dashboard" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'dashboard' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
                 <i class="fas fa-tachometer-alt w-5"></i>
@@ -268,13 +269,15 @@ $current_page = $_GET['page'] ?? 'dashboard';
                         <i class="fas fa-newspaper w-5"></i>
                         <span>Manşet Gösterimi</span>
                     </a>
-                    <a href="?page=article-display" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'article-display' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
+                    <a href="?page=article-display" data-page="article-display" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo ($current_page === 'article-display') ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
                         <i class="fas fa-th-list w-5"></i>
                         <span>Makale Gösterimi</span>
+                        <!-- Debug: article-display = <?php echo ($current_page === 'article-display') ? 'ACTIVE' : 'NOT ACTIVE'; ?> -->
                     </a>
-                    <a href="?page=makale-botu" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo $current_page === 'makale-botu' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
+                    <a href="?page=makale-botu" data-page="makale-botu" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 <?php echo ($current_page === 'makale-botu') ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : ''; ?>">
                         <i class="fas fa-robot w-5"></i>
                         <span>Makale Botu</span>
+                        <!-- Debug: makale-botu = <?php echo ($current_page === 'makale-botu') ? 'ACTIVE' : 'NOT ACTIVE'; ?> -->
                     </a>
                 </div>
             </div>
@@ -668,7 +671,8 @@ $current_page = $_GET['page'] ?? 'dashboard';
 
         // Aktif sayfanın menüsünü otomatik aç
         const currentPage = '<?php echo $current_page; ?>';
-        const activeLink = document.querySelector(`a[href="?page=${currentPage}"]`);
+        const activeLink = document.querySelector(`a[href="?page=${currentPage}"]`) || 
+                          document.querySelector(`a[data-page="${currentPage}"]`);
         if (activeLink) {
             const parentMenu = activeLink.closest('.menu-items');
             if (parentMenu) {

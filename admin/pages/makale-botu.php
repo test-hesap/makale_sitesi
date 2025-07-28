@@ -4,6 +4,9 @@
  * Bu sayfa, AI kullanarak otomatik makale üretmeyi sağlar
  */
 
+// Debug: Current page kontrolü
+// echo "<!-- Debug: Current page is: " . ($current_page ?? 'undefined') . " -->";
+
 // Çıktı tamponlamasını başlat
 ob_start();
 
@@ -617,3 +620,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+</script>

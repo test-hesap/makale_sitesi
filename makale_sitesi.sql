@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 28 Tem 2025, 21:47:04
+-- Üretim Zamanı: 28 Tem 2025, 22:31:31
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -372,7 +372,11 @@ INSERT INTO `login_attempts` (`id`, `ip_address`, `username`, `attempt_time`, `s
 (29, '::1', 'admin', '2025-07-28 22:16:23', 0),
 (30, '::1', 'admin', '2025-07-28 22:16:23', 1),
 (31, '::1', 'admin', '2025-07-28 22:20:53', 0),
-(32, '::1', 'admin', '2025-07-28 22:20:53', 1);
+(32, '::1', 'admin', '2025-07-28 22:20:53', 1),
+(33, '::1', 'admin', '2025-07-28 23:04:32', 0),
+(34, '::1', 'admin', '2025-07-28 23:04:32', 1),
+(35, '::1', 'admin', '2025-07-28 23:30:56', 0),
+(36, '::1', 'admin', '2025-07-28 23:30:56', 1);
 
 -- --------------------------------------------------------
 
@@ -415,8 +419,8 @@ CREATE TABLE `online_users` (
 --
 
 INSERT INTO `online_users` (`id`, `user_id`, `session_id`, `last_activity`, `ip_address`, `user_agent`, `created_at`) VALUES
-(262, 1, '9e1073ic5id7dj29hrtue4bkbs', '2025-07-28 22:16:53', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '2025-07-28 22:16:15'),
-(263, 1, 'rd60od8plf87dcijqko40crf4i', '2025-07-28 22:26:21', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '2025-07-28 22:20:47');
+(264, 1, 'mi21tdpq5t7cokp8o87gebj3rh', '2025-07-28 23:27:26', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '2025-07-28 23:04:22'),
+(265, 1, 'vrrnvdvvqga9s2vq8h1k4b3raj', '2025-07-28 23:31:01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '2025-07-28 23:30:51');
 
 -- --------------------------------------------------------
 
@@ -442,15 +446,6 @@ CREATE TABLE `page_views` (
   `bounce` tinyint(1) DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `page_views`
---
-
-INSERT INTO `page_views` (`id`, `page_url`, `page_title`, `user_id`, `session_id`, `ip_address`, `user_agent`, `referer`, `device_type`, `browser`, `operating_system`, `country`, `city`, `reading_time`, `bounce`, `created_at`) VALUES
-(10, '/', 'Localhost', NULL, '6c4c4ccbaf550758e176b6e19507fb59', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', '', 'desktop', 'Chrome', 'Windows', NULL, NULL, 0, 1, '2025-07-28 19:20:47'),
-(11, '/login', 'Giriş Yap - Localhost', NULL, '6c4c4ccbaf550758e176b6e19507fb59', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', 'http://localhost/', 'desktop', 'Chrome', 'Windows', NULL, NULL, 0, 1, '2025-07-28 19:20:48'),
-(12, '/', 'Localhost', 1, '6c4c4ccbaf550758e176b6e19507fb59', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0', 'http://localhost/login', 'desktop', 'Chrome', 'Windows', NULL, NULL, 0, 1, '2025-07-28 19:20:53');
 
 -- --------------------------------------------------------
 
@@ -616,7 +611,7 @@ CREATE TABLE `safe_ips` (
 
 INSERT INTO `safe_ips` (`id`, `ip_address`, `username`, `last_successful_login`) VALUES
 (1, '127.0.0.1', 'co', '2025-07-28 20:27:55'),
-(6, '::1', 'admin', '2025-07-28 22:20:53'),
+(6, '::1', 'admin', '2025-07-28 23:30:56'),
 (7, '127.0.0.1', 'bv', '2025-07-28 21:31:20');
 
 -- --------------------------------------------------------
@@ -873,7 +868,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile_image`, `bio`, `is_approved`, `is_premium`, `premium_expires_at`, `two_factor_secret`, `is_admin`, `theme_preference`, `language_preference`, `created_at`, `updated_at`, `location`, `website`, `twitter`, `facebook`, `instagram`, `linkedin`, `tiktok`, `youtube`, `github`, `last_ip`, `last_login`, `is_active`, `status`) VALUES
-(1, 'admin', 'admin@example.com', '$2y$10$7kIn.GMLrNlKJbtc8C5eweVO93MIw9KspKWxcpeRtnnH2ccJ.li/u', 'assets/images/profiles/6865860ac95f1_1751483914.jpg', '12', 1, 0, NULL, NULL, 1, 'light', 'tr', '2025-07-28 18:38:51', '2025-07-28 19:20:53', '12', 'http://localhost/', '1', '1', '1', '1', '1', '1', '1', '::1', '2025-07-28 22:20:53', 1, 'active');
+(1, 'admin', 'admin@example.com', '$2y$10$7kIn.GMLrNlKJbtc8C5eweVO93MIw9KspKWxcpeRtnnH2ccJ.li/u', 'assets/images/profiles/6865860ac95f1_1751483914.jpg', '12', 1, 0, NULL, NULL, 1, 'light', 'tr', '2025-07-28 18:38:51', '2025-07-28 20:30:56', '12', 'http://localhost/', '1', '1', '1', '1', '1', '1', '1', '::1', '2025-07-28 23:30:56', 1, 'active');
 
 -- --------------------------------------------------------
 
@@ -1244,7 +1239,7 @@ ALTER TABLE `languages`
 -- Tablo için AUTO_INCREMENT değeri `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `messages`
@@ -1256,13 +1251,13 @@ ALTER TABLE `messages`
 -- Tablo için AUTO_INCREMENT değeri `online_users`
 --
 ALTER TABLE `online_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `page_views`
 --
 ALTER TABLE `page_views`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `password_resets`
@@ -1304,7 +1299,7 @@ ALTER TABLE `remember_tokens`
 -- Tablo için AUTO_INCREMENT değeri `safe_ips`
 --
 ALTER TABLE `safe_ips`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `settings`
