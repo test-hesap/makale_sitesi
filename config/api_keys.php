@@ -3,12 +3,12 @@
 // .gitignore dosyasına eklenmeli ve sunucuya manuel yüklenmeli
 
 // AI API anahtarları
-$GEMINI_API_KEY = 'AIzaSyCekWFRMUmQ-44ePXja2cNksDGBV5KP6EQ';
+$GEMINI_API_KEY = 'YOUR_API_KEY';
 $OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY';
 $GROK_API_KEY = 'YOUR_GROK_API_KEY';
 
 // Resim API anahtarları
-$UNSPLASH_ACCESS_KEY = 'bg8tptU9d5Nc29TRysp3hWJFYLU2vk5kSeEnqgVyuIQ';
+$UNSPLASH_ACCESS_KEY = 'YOUR_API_KEY';
 
 /**
  * Gemini API anahtarına göre model tipini otomatik algılayan fonksiyon
