@@ -38,10 +38,7 @@ $hasSocialLinks = !empty(array_filter($socialLinks));
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Site Bilgileri -->
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <?php if (!empty($settings['site_logo'])): ?>
-                        <img src="<?= $settings['site_logo'] ?>" alt="<?= $settings['site_title'] ?>" class="h-8 w-auto">
-                        <?php endif; ?>
+                    <div class="mb-4">
                         <h3 class="text-xl font-bold"><?= $settings['site_title'] ?></h3>
                     </div>
                     <p class="text-gray-300 mb-4"><?= $settings['site_description'] ?></p>
